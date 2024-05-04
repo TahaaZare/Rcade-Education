@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,9 +17,17 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        "username",
+        "display_name",
+        "mobile",
+        "email",
+        "profile",
+        "user_type",
+        "gc_status",
+        "ban",
+        "password",
+        "mobile_verified_at",
+        "email_verified_at",
     ];
 
     /**
@@ -44,4 +52,6 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    
 }

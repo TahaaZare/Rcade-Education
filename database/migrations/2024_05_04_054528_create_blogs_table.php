@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('category_id')->nullable()->constrained('blog_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->longText('description');
             $table->text('meta_description');
