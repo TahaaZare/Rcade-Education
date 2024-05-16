@@ -1,0 +1,9 @@
+@extends('site.layouts.master')
+@section('content')
+    @include('site.layouts.hero-banner')
+    @include('site.layouts.categories')
+    @include('site.layouts.course-area')
+    @include('site.layouts.cta')
+    @include('site.layouts.faq')
+    @include('site.layouts.ad-banner')
+@endsection
