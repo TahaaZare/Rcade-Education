@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('course_episodes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('create_by')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->text('description')->nullable();
             $table->text('file_path');
             $table->bigInteger('file_size');

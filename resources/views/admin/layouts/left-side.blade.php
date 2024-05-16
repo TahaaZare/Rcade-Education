@@ -35,7 +35,7 @@
                           </a>
                           <ul class="ml-menu">
                               <li>
-                                  <a href="">اسلایدر</a>
+                                  <a href="{{ route('admin.faq.index',$user->username) }}">سوالات متداول</a>
                               </li>
                           </ul>
                       </li>
