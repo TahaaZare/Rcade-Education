@@ -1,15 +1,22 @@
 <header class="edu-header header-style-1 header-fullwidth">
     @php
-        $email = "rcadeeteam@gmail.com";
+        $email = 'rcadeeteam@gmail.com';
     @endphp
     <div class="header-top-bar">
         <div class="container-fluid">
             <div class="header-top">
                 <div class="header-top-right">
                     <ul class="header-info">
+                        @auth
+                            @php
+                                $user = auth()->user();
+                            @endphp
+                            <li><a href="{{ route('admin.home', $user->username) }}">admin</a></li>
+                        @endauth
                         <li><a href="#">ورود</a></li>
                         <li><a href="#">ثبت‌نام</a></li>
-                        <li><a href="mailto:{{ $email }}" target="_blank"><i class="icon-envelope"></i>ایمیل: {{ $email }}</a></li>
+                        <li><a href="mailto:{{ $email }}" target="_blank"><i class="icon-envelope"></i>ایمیل:
+                                {{ $email }}</a></li>
                         <li class="social-icon">
                             <a href="#"><i class="icon-facebook"></i></a>
                             <a href="#"><i class="icon-instagram"></i></a>

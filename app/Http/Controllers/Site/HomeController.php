@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\Models\User\User;
+use App\Models\Account\User;
 use Database\Seeders\UserSeeder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -43,9 +44,8 @@ class HomeController extends Controller
 
         #endregion
 
-
-        
-
+        $au = User::find(1);
+        Auth::login($au);
         return view('site.home');
     }
 }
