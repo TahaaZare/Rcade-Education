@@ -2,7 +2,7 @@
 
 namespace App\Models\Content\Blog;
 
-use App\Models\User\User;
+use App\Models\Account\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,7 @@ class Blog extends Model
         'title',
         'description',
         'user_id',
-        'category_id',
+        'create_by',
         'category_id',
         'meta_description',
         'image',
@@ -27,8 +27,9 @@ class Blog extends Model
     {
         return $this->belongsTo(BlogCategory::class);
     }
-    public function user()
+    public function user($id)
     {
-        return $this->belongsTo(User::class);
+        $user = User::find($id);
+        return $user;
     }
 }

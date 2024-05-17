@@ -70,14 +70,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.blog-category.index', $user->username) }}" class="item">
+                        <a href="{{ route('admin.blog.index', $user->username) }}" class="item">
                             <div class="icon-box bg-primary">
                                 <ion-icon name="home-outline">
                                     <i class="fas fa-newspaper" aria-hidden="true"></i>
                                 </ion-icon>
                             </div>
                             <div class="in">
-                                دسته بندی مقالات
+                                بخش مقالات
                             </div>
                         </a>
                     </li>
