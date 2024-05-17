@@ -1,4 +1,7 @@
 @extends('pwa.master')
+@section('app-menu')
+    @include('pwa.app-button-menu')
+@endsection
 @section('header')
     @include('pwa.header')
 @endsection

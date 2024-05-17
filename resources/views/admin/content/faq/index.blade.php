@@ -1,5 +1,8 @@
 @extends('pwa.master')
 @section('title', 'سوالات متداول')
+@section('app-menu')
+    @include('pwa.app-button-menu')
+@endsection
 @section('header')
     @include('pwa.header')
 @endsection
