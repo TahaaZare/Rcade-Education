@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Content\Blog\BlogCategoryController;
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Site\HomeController;
+
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -34,6 +36,19 @@ Route::controller(AdminController::class)->prefix('admin')->group(function () {
             Route::get('{user:username}/edit/{faq}', 'edit')->name('admin.faq.edit');
             Route::put('{user:username}/update/{faq}', 'update')->name('admin.faq.update');
             Route::delete('{user:username}/delete/{faq}', 'delete')->name('admin.faq.delete');
+        });
+
+        #endregion
+
+        #region blog & categories
+
+        Route::controller(BlogCategoryController::class)->prefix('blog-category')->group(function () {
+            Route::get('{user:username}/', 'index')->name('admin.blog-category.index');
+            Route::get('{user:username}/create', 'create')->name('admin.blog-category.create');
+            Route::post('{user:username}/store', 'store')->name('admin.blog-category.store');
+            Route::get('{user:username}/edit/{category}', 'edit')->name('admin.blog-category.edit');
+            Route::put('{user:username}/update/{category}', 'update')->name('admin.blog-category.update');
+            Route::delete('{user:username}/delete/{category}', 'delete')->name('admin.blog-category.delete');
         });
 
         #endregion
