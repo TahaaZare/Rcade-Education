@@ -1,93 +1,67 @@
-@extends('admin.layouts.master')
+@extends('pwa.master')
+@section('header')
+    @include('pwa.header')
+@endsection
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="info-box7 l-bg-green order-info-box7">
-                <div class="info-box7-block">
-                    <h4 class="m-b-20">کاربران سایت</h4>
-                    <h2 class="text-right"><i class="fas fa-user-alt pull-left"></i><span>{{ $users->count() }}</span></h2>
+    <div class="section mt-3 mb-3">
+        <div class="card container">
+            <div class="card-body  d-flex justify-content-between align-items-end">
+                <div>
+                    <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                        کاربران سایت
+                    </h5>
                 </div>
+                <span class="badge badge-info">{{ $users->count() }}</span>
             </div>
         </div>
+        <div class="carousel-multiple my-4  splide splide--loop splide--rtl splide--draggable is-active" id="splide04"
+            style="visibility: visible;">
+            <div class="splide__track" id="splide04-track" style="padding-left: 20px; padding-right: 20px;">
+                <ul class="splide__list" id="splide04-list" style="transform: translateX(2052.24px);">
+                    @foreach ($users as $item)
+                        <li class="splide__slide splide__slide--clone" aria-hidden="true" tabindex="-1"
+                            style="margin-left: 20px; width: 100px;">
+                            @if ($item->status == 1)
+                                <div class="card px-4 py-2" style="border: 2px solid green">
+                                    <div class="header">
+                                        <h2>
+                                            <span class="text-xs text-white badge bg-success font-weight-bold">
+                                                تایید شده
+                                            </span>
+                                        </h2>
+                                    </div>
+                                    <div class="body p-7">
 
+                                        نام کاربری :
+                                        {{ $item->username }}
+                                        <br>
+                                        شماره تماس :
+                                        {{ $item->mobile }}
+                                    </div>
+                                </div>
+                            @else
+                                <div class="card px-4 py-2" style="border: 2px solid red">
+                                    <div class="header">
+                                        <h2>
+                                            <span class="text-xs text-white badge bg-success font-weight-bold">
+                                                غیرفعال
+                                            </span>
+                                        </h2>
+                                    </div>
+                                    <div class="body p-7">
 
-        <div class="">
-            @foreach ($users as $item)
-                <div class="col-12">
-                    @if ($item->status == 1)
-                        <div class="card" style="border: 2px solid green">
-                            <div class="header">
-                                <h2>
-                                    <span class="text-xs text-white badge bg-success font-weight-bold">
-                                        تایید شده
-                                    </span>
-                                </h2>
-
-                            </div>
-                            <div class="body p-7">
-
-                                نام کاربری :
-                                {{ $item->username }}
-                                <br>
-                                شماره تماس :
-                                {{ $item->mobile }}
-                            </div>
-                        </div>
-                    @else
-                        <div class="card" style="border: 2px solid red">
-                            <div class="header">
-                                <h2>
-                                    <span class="text-xs text-white badge bg-danger font-weight-bold">
-                                        در انتظار تایید . . .
-                                    </span>
-                                </h2>
-                            </div>
-                            <div class="body p-7">
-
-                                نام کاربری :
-                                {{ $item->username }}
-                                <br>
-                                شماره تماس :
-                                {{ $item->mobile }}
-                            </div>
-                        </div>
-                    @endif
-                </div>
-            @endforeach
-        </div>
-
-        <hr>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="card">
-                <div class="header">
-                    <h3>
-                        اسلایدر های سایت
-                    </h3>
-                    <ul class="header-dropdown m-r--5">
-                        <li class="dropdown">
-                            <a href="#" onclick="return false;" class="dropdown-toggle" data-toggle="dropdown"
-                                role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li>
-                                    {{-- <a href="{{ route('admin.slider.create') }}">افزودن</a> --}}
-                                </li>
-                            </ul>
+                                        نام کاربری :
+                                        {{ $item->username }}
+                                        <br>
+                                        شماره تماس :
+                                        {{ $item->mobile }}
+                                    </div>
+                                </div>
+                            @endif
                         </li>
-                    </ul>
-                </div>
-                <div class="body">
-                    <div class="owl-carousel owl-theme owl-loaded owl-drag" id="basic_demo">
+                    @endforeach
 
-                        <div class="owl-stage-outer">
-                            <div class="owl-stage"
-                                style="transform: translate3d(-2148px, 0px, 0px); transition: all 0s ease 0s; width: 3820px;">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </ul>
             </div>
         </div>
     </div>

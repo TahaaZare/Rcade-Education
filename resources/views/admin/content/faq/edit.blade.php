@@ -1,5 +1,5 @@
-@extends('admin.layouts.master')
-@section('title', 'ویرایش سوال')
+@extends('pwa.master')
+@section('title', "ویرایش سوال : $faq->question")
 @section('content')
     <div class="clearfix row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -10,10 +10,15 @@
                     @method('put')
                     <div class="clearfix row">
                         <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" name="question" value="{{ old('question', $faq->question) }}"
-                                        class="form-control" placeholder="سوال . . .">
+                            <div class="form-group basic">
+                                <div class="input-wrapper">
+                                    <label class="form-label" for="question">سوال</label>
+                                    <input type="text" class="form-control" id="question" name="question"
+                                        value="{{ old('question', $faq->question) }}" placeholder="سوال را وارد کنید">
+                                    <i class="clear-input">
+                                        <ion-icon name="close-circle" role="img" class="md hydrated"
+                                            aria-label="close circle"></ion-icon>
+                                    </i>
                                 </div>
                             </div>
                             @error('question')
@@ -23,8 +28,9 @@
                             @enderror
                         </div>
                         <div class="col-sm-6  my-1">
-                            <div class="form-group">
-                                <div class="form-line">
+                            <div class="form-group basic">
+                                <div class="input-wrapper">
+                                    <label class="form-label" for="question">سوال</label>
                                     <select name="status" class="form-control">
                                         <option disabled selected>انتخاب وضعیت</option>
                                         @if ($faq->status == 1)
@@ -35,7 +41,10 @@
                                             <option value="0" selected>غیرفعال</option>
                                         @endif
 
-                                    </select>
+                                    </select> <i class="clear-input">
+                                        <ion-icon name="close-circle" role="img" class="md hydrated"
+                                            aria-label="close circle"></ion-icon>
+                                    </i>
                                 </div>
                             </div>
                             @error('status')
@@ -58,8 +67,9 @@
                             @enderror
                         </div>
 
-                        <div class="col-sm-12">
-                            <button type="submit" class="btn btn-block" style="background: blue">
+
+                        <div class="col-12 my-4">
+                            <button type="submit" class="btn btn-block btn-primary">
                                 ثبت
                             </button>
                         </div>
@@ -75,7 +85,7 @@
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
     {!! JsValidator::formRequest('App\Http\Requests\Admin\Content\Faq\StoreFaqRequest') !!}
 
-    <script src="{{ asset('admin-assets/ckeditor5/build/ckeditor.js') }}"></script>
+    <script src="{{ asset('ckeditor5/build/ckeditor.js') }}"></script>
     <script>
         const watchdog = new CKSource.EditorWatchdog();
         window.watchdog = watchdog;
