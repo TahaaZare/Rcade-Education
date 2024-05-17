@@ -1,79 +1,64 @@
-<div class="edu-faq-area faq-style-2 bg-image">
+<div class="edu-faq-area faq-style-9 section-gap-equal">
     <div class="container">
         <div class="row g-5 row--45">
             <div class="col-lg-6">
-                <div class="edu-faq-content">
-                    <div class="section-title section-left" data-sal-delay="50" data-sal="slide-up"
-                        data-sal-duration="1000">
-                        <span class="pre-title">سوالات متداول</span>
-                        <h2 class="title">بهترین فرهنگ آموزشی خود را با بلینک بیاموزید</h2>
-                        <span class="shape-line"><i class="icon-19"></i></span>
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                        </p>
-                    </div>
-                    <div class="faq-accordion" id="faq-accordion" data-sal-delay="50" data-sal="slide-up"
-                        data-sal-duration="1000">
-                        <div class="accordion">
-
-                            @foreach ($faqs as $item)
-                                <div class="accordion-item">
-                                    <h5 class="accordion-header">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse-{{ $item->id }}" aria-expanded="true">
-
-                                            {{ $item->question }}
-                                        </button>
-                                    </h5>
-                                    <div id="collapse-{{ $item->id }}" class="accordion-collapse collapse show"
-                                        data-bs-parent="#faq-accordion-{{ $item->id }}">
-                                        <div class="accordion-body">
-                                            {!! $item->answer !!}
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
+                <div class="section-title section-left sal-animate" data-sal-delay="150" data-sal="slide-right"
+                    data-sal-duration="800">
+                    <span class="pre-title">سوالات متداول</span>
+                </div>
+                <div class="d-flex align-items-start sal-animate" data-sal-delay="200" data-sal="slide-right"
+                    data-sal-duration="800">
+                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
+                        aria-orientation="vertical">
+                        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                            aria-selected="true">سوالات عمومی</button>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="edu-faq-gallery">
-                    <div class="row g-5">
-                        <div class="col-6" data-sal-delay="50" data-sal="slide-down" data-sal-duration="1000">
-                            <div class="faq-thumbnail thumbnail-1">
-                                <img src="{{ asset('site-assets/assets/images/faq/faq-05.webp') }}" alt="Faq Images">
-                            </div>
-                        </div>
-                        <div class="col-6" data-sal-delay="50" data-sal="slide-up" data-sal-duration="1000">
-                            <div class="faq-thumbnail thumbnail-2">
-                                <img src="{{ asset('site-assets/assets/images/faq/faq-06.webp') }}" alt="Faq Images">
+                <div class="edu-faq-content">
+                    <div class="tab-content sal-animate" id="v-pills-tabContent" data-sal-delay="150"
+                        data-sal="slide-up" data-sal-duration="800">
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                            aria-labelledby="v-pills-home-tab">
+                            <div class="faq-accordion" id="faq-accordion">
+                                <div class="accordion">
+                                    @foreach ($faqs as $item)
+                                        <div class="accordion-item">
+                                            <h5 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapse-{{ $item->id }}"
+                                                    aria-expanded="false">
+                                                    {{ $item->question }}
+                                                </button>
+                                            </h5>
+                                            <div id="collapse-{{ $item->id }}" class="accordion-collapse collapse"
+                                                data-bs-parent="#faq-accordion" style="">
+                                                <div class="accordion-body">
+                                                    {!! $item->answer !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
                     <ul class="shape-group">
-                        <li class="shape-1 scene">
-                            <img data-depth="2" src="{{ asset('site-assets/assets/images/faq/shape-06.png') }}"
-                                alt="Shape Images">
+                        <li class="shape-1 scene sal-animate" data-sal-delay="500" data-sal="fade"
+                            data-sal-duration="200"
+                            style="transform: translate3d(0px, 0px, 0px) rotate(0.0001deg); transform-style: preserve-3d; backface-visibility: hidden; pointer-events: none;">
+                            <img data-depth="1.5" src="{{ asset('site-assets/assets/images/others/shape-55.png') }}"
+                                alt="Shape Images"
+                                style="transform: translate3d(0px, 0px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: relative; display: block; left: 0px; top: 0px;">
                         </li>
-                        <li class="shape-2">
-                            <img data-depth="-2" src="{{ asset('site-assets/assets/images/faq/shape-04.png') }}"
-                                alt="Shape Images">
-                        </li>
-                        <li class="shape-3 scene">
-                            <img data-depth="2" src="{{ asset('site-assets/assets/images/faq/shape-16.png') }}"
-                                alt="Shape Images">
-                        </li>
-                        <li class="shape-4 scene">
-                            <img data-depth="-2" src="{{ asset('site-assets/assets/images/banner/shape-03.png') }}"
-                                alt="Shape Images">
-                        </li>
-                        <li class="shape-5 scene">
-                            <img data-depth="-2" src="{{ asset('site-assets/assets/images/faq/shape-08.png') }}"
-                                alt="Shape Images">
-                        </li>
-                        <li class="shape-6 scene">
-                            <img data-depth="1.7" src="{{ asset('site-assets/assets/images/faq/shape-09.png') }}"
-                                alt="Shape Images">
+                        <li class="shape-2 scene sal-animate" data-sal-delay="500" data-sal="fade"
+                            data-sal-duration="200"
+                            style="transform: translate3d(0px, 0px, 0px) rotate(0.0001deg); transform-style: preserve-3d; backface-visibility: hidden; pointer-events: none;">
+                            <img data-depth="-1.5" src="{{ asset('site-assets/assets/images/others/shape-56.png') }}"
+                                alt="Shape Images"
+                                style="transform: translate3d(0px, 0px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: relative; display: block; left: 0px; top: 0px;">
                         </li>
                     </ul>
                 </div>

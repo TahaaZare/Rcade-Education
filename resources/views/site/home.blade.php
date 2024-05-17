@@ -3,7 +3,8 @@
     @include('site.layouts.hero-banner')
     @include('site.layouts.categories')
     @include('site.layouts.course-area')
-    @include('site.layouts.cta')
     @include('site.layouts.faq')
+    @include('site.layouts.cta-programming')
+    @include('site.layouts.blog-area')
     @include('site.layouts.ad-banner')
 @endsection
