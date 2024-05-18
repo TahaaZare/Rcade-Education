@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Content\Blog\BlogCategoryController;
 use App\Http\Controllers\Admin\Content\Blog\BlogController;
+use App\Http\Controllers\Admin\Content\Course\CourseCategoryController;
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Site\HomeController;
 
@@ -60,6 +61,21 @@ Route::controller(AdminController::class)->prefix('admin')->group(function () {
             Route::put('{user:username}/update/{blog}', 'update')->name('admin.blog.update');
             Route::delete('{user:username}/delete/{blog}', 'delete')->name('admin.blog.delete');
         });
+
+        #endregion
+
+        #region course & category
+
+        Route::controller(CourseCategoryController::class)->prefix('course-category')->group(function () {
+            Route::get('{user:username}/', 'index')->name('admin.course-category.index');
+            Route::get('{user:username}/create', 'create')->name('admin.course-category.create');
+            Route::post('{user:username}/store', 'store')->name('admin.course-category.store');
+            Route::get('{user:username}/edit/{category}', 'edit')->name('admin.course-category.edit');
+            Route::put('{user:username}/update/{category}', 'update')->name('admin.course-category.update');
+            Route::delete('{user:username}/delete/{category}', 'delete')->name('admin.course-category.delete');
+        });
+
+
 
         #endregion
 

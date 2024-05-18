@@ -9,5 +9,5 @@ class CourseCategory extends Model
 {
     use HasFactory;
     protected $table = 'course_categories';
-    protected $fillable = ['name', 'slug', 'parent_id'];
+    protected $fillable = ['name', 'image','user_id', 'slug', 'parent_id'];
 }
