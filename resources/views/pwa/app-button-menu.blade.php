@@ -29,6 +29,14 @@
               </a>
           @endif
 
+          <a href="" class="item " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="دوره های آنلاین">
+            <div class="col">
+                <ion-icon name="layers-outline">
+                    <i class="fas fa-user-graduate" aria-hidden="true"></i>
+                </ion-icon>
+            </div>
+        </a>
+
           <a href="" class="item " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="مقالات">
               <div class="col">
                   <ion-icon name="layers-outline">

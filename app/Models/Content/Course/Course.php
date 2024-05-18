@@ -2,6 +2,7 @@
 
 namespace App\Models\Content\Course;
 
+use App\Models\Account\User as AccountUser;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,7 @@ class Course extends Model
     protected $table = 'courses';
     protected $fillable = [
         'master_id',
+        'create_by',
         'name',
         'summary',
         'description',
@@ -38,6 +40,10 @@ class Course extends Model
     }
     public function master()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(AccountUser::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(AccountUser::class,'create_by');
     }
 }

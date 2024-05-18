@@ -1,5 +1,11 @@
 @extends('pwa.master')
 @section('title', 'افزودن مقاله جدید')
+@section('app-menu')
+    @include('pwa.app-button-menu')
+@endsection
+@section('header')
+    @include('pwa.header')
+@endsection
 @section('content')
     <div class="clearfix row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

@@ -4,9 +4,10 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Content\Blog\BlogCategoryController;
 use App\Http\Controllers\Admin\Content\Blog\BlogController;
 use App\Http\Controllers\Admin\Content\Course\CourseCategoryController;
+use App\Http\Controllers\Admin\Content\Course\CourseController;
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Site\HomeController;
-
+use App\Models\Content\Course\CourseCategory;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -74,6 +75,17 @@ Route::controller(AdminController::class)->prefix('admin')->group(function () {
             Route::put('{user:username}/update/{category}', 'update')->name('admin.course-category.update');
             Route::delete('{user:username}/delete/{category}', 'delete')->name('admin.course-category.delete');
         });
+
+
+        Route::controller(CourseController::class)->prefix('course')->group(function () {
+            Route::get('{user:username}/', 'index')->name('admin.course.index');
+            Route::get('{user:username}/create', 'create')->name('admin.course.create');
+            Route::post('{user:username}/store', 'store')->name('admin.course.store');
+            Route::get('{user:username}/edit/{course}', 'edit')->name('admin.course.edit');
+            Route::put('{user:username}/update/{course}', 'update')->name('admin.course.update');
+            Route::delete('{user:username}/delete/{course}', 'delete')->name('admin.course.delete');
+        });
+
 
 
 

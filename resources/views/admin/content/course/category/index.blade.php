@@ -1,5 +1,6 @@
 @extends('pwa.master')
 @section('title', 'دسته بندی دوره ها')
+
 @section('app-menu')
     @include('pwa.app-button-menu')
 @endsection
