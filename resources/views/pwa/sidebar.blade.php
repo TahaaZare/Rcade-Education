@@ -19,26 +19,7 @@
     @endguest
     @auth
         <a href="" class="button">
-            <ion-icon name="log-out-outline">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>
-            </ion-icon>
+            <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
         </a>
     @endauth
-</div>
-<!-- * sidebar buttons -->
-<div class="section mt-3 mb-3">
-    <div class="card">
-        <div class="card-body d-flex justify-content-between align-items-end">
-            <div>
-                <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
-                    نسخه تاریک
-                </h5>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input dark-mode-switch" type="checkbox" id="darkmodecontent">
-                <label class="form-check-label" for="darkmodecontent"></label>
-            </div>
-
-        </div>
-    </div>
 </div>

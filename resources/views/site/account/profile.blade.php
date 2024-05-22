@@ -67,7 +67,8 @@
             <!-- feed -->
             <div class="tab-pane fade show active" id="feed" role="tabpanel">
                 <div class="mt-2 p-2 pt-0 pb-0">
-                    <a class="my-3 btn btn-outline-success" href="">افزودن مقاله جدید</a>
+                    <a class="my-3 btn btn-outline-success" href="{{ route('user-create-blog', $user->username) }}">افزودن
+                        مقاله جدید</a>
 
 
                     <div class="row">
@@ -101,12 +102,8 @@
                                         </div>
                                         <hr>
                                         <div class="d-flex justify-content-start">
-                                            <a href="" class="btn btn-outline-warning mx-1">ویرایش</a>
-                                            <form action="" method="POST" enctype="multipart/form-data">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="btn btn-outline-danger mx-1" type="submit">حذفــ</button>
-                                            </form>
+                                            <a href="{{ route('user-edit-blog', [$user->username, $item]) }}"
+                                                class="btn btn-outline-warning mx-1">ویرایش</a>
                                         </div>
                                     </div>
                                 </div>
@@ -132,12 +129,12 @@
                                 <div id="accordion1" class="accordion-collapse collapse" data-bs-parent="#accordionabout"
                                     style="">
                                     <div class="accordion-body">
-                                        <form action="{{ route('update-bio',$user->username) }}" method="POST">
+                                        <form action="{{ route('update-bio', $user->username) }}" method="POST">
                                             @csrf
                                             <div class="form-group">
                                                 <div class="form-line in" aria-hidden="true">
                                                     <textarea type="text" aria-hidden="true" name="bio" class="form-control description"
-                                                     placeholder="بیوگرافــی . . .">{{ old('bio',$user->bio) }}</textarea>
+                                                        placeholder="بیوگرافــی . . .">{{ old('bio', $user->bio) }}</textarea>
                                                 </div>
                                             </div>
                                             <br>

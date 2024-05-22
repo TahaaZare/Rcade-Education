@@ -27,8 +27,14 @@ Route::controller(HomeController::class)->group(function () {
 });
 
 Route::controller(ProfileController::class)->prefix('my-profile')->group(function () {
-    Route::get('/{user:username}',"MyProfile")->name('user.profile');
-    Route::post('/{user:username}/update-bio',"UpdateBio")->name('update-bio');
+    Route::get('/{user:username}', "MyProfile")->name('user.profile');
+    Route::post('/{user:username}/update-bio', "UpdateBio")->name('update-bio');
+
+    Route::get('/{user:username}/create-blog', "CreateBlog")->name('user-create-blog');
+    Route::post('/{user:username}/store-blog', "StoreBlog")->name('user-store-blog');
+
+    Route::get('/{user:username}/edit-blog/{blog}', "EditBlog")->name('user-edit-blog');
+    Route::put('/{user:username}/update-blog/{blog}', "UpdateBlog")->name('user-update-blog');
 });
 
 #endregion
