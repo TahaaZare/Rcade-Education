@@ -28,7 +28,6 @@
                         <h4 class="widget-title">پلتفرم آنلاین</h4>
                         <div class="inner">
                             <ul class="footer-link link-hover">
-                                <li><a href="">درباره</a></li>
                                 <li><a href="">دوره‌ها</a></li>
                             </ul>
                         </div>
@@ -40,7 +39,7 @@
                         <div class="inner">
                             <ul class="footer-link link-hover">
                                 <li><a href="">تماس با ما</a></li>
-                                <li><a href="">اخبار و مقالات</a></li>
+                                <li><a href="{{ route('about-us') }}">درباره</a></li>
                             </ul>
                         </div>
                     </div>

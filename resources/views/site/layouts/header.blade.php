@@ -50,7 +50,7 @@
                             <li><a href="{{ route('home') }}">صفحه اصلی</a></li>
                             <li class="has-droupdown"><a href="#">لینک های مفید</a>
                                 <ul class="submenu">
-                                    <li><a href="" wire:navigate>درباره ما</a></li>
+                                    <li><a href="{{ route('about-us') }}" wire:navigate>درباره ما</a></li>
                                     <li><a href="" wire:navigate>تماس با ما</a></li>
                                 </ul>
                             </li>

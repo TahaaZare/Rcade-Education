@@ -60,7 +60,7 @@
                     <hr>
                     <li class="text-center">
                         <span class="badge bg-primary">
-                                بخش ادمین
+                            بخش ادمین
                         </span>
                     </li>
                     <li>
@@ -99,8 +99,19 @@
                             </div>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.about.index', $user->username) }}" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="home-outline">
+                                    <i class="fas fa-user-friends" aria-hidden="true"></i>
+                                </ion-icon>
+                            </div>
+                            <div class="in">
+                                درباره مـا
+                            </div>
+                        </a>
+                    </li>
                     <hr>
-
                 @endif
             @endauth
         </ul>

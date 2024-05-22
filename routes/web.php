@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Content\AboutUsController;
 use App\Http\Controllers\Admin\Content\Blog\BlogCategoryController;
 use App\Http\Controllers\Admin\Content\Blog\BlogController;
 use App\Http\Controllers\Admin\Content\Course\CourseCategoryController;
@@ -15,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'home')->name('home');
-    Route::get('blogs/{blog:slug}','ShowBlog')->name('show-blog');
+    Route::get('/about-us', 'AboutUs')->name('about-us');
+    Route::get('blogs/{blog:slug}', 'ShowBlog')->name('show-blog');
 });
 
 
@@ -30,7 +32,13 @@ Route::controller(AdminController::class)->prefix('admin')->group(function () {
 
     Route::prefix('content')->group(function () {
 
-        #region faq
+        #region faq & about us
+
+        Route::controller(AboutUsController::class)->prefix('about')->group(function () {
+            Route::get('{user:username}/', 'index')->name('admin.about.index');
+            Route::get('{user:username}/edit/{about}', 'edit')->name('admin.about.edit');
+            Route::put('{user:username}/update/{about}', 'update')->name('admin.about.update');
+        });
 
         Route::controller(FaqController::class)->prefix('faq')->group(function () {
             Route::get('{user:username}/', 'index')->name('admin.faq.index');

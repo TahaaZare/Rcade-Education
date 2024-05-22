@@ -7,7 +7,9 @@ use App\Models\Account\User;
 use App\Models\Content\Blog\Blog;
 use App\Models\Content\Course\Course;
 use App\Models\Content\Course\CourseCategory;
+use App\Models\Content\Site\AboutUs;
 use App\Models\Content\Site\Faq;
+use Database\Seeders\AboutUsSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +48,12 @@ class HomeController extends Controller
             $default->run();
         }
 
+        $about = AboutUs::first();
+        if ($about === null) {
+            $default = new AboutUsSeeder();
+            $default->run();
+        }
+
         #endregion
 
         $au = User::find(1);
@@ -58,6 +66,17 @@ class HomeController extends Controller
         return view('site.home', compact('faqs', 'blogs', 'course_categories', 'courses'));
     }
 
+    public function AboutUs()
+    {
+        $about = AboutUs::first();
+        if ($about === null) {
+            $default = new AboutUsSeeder();
+            $default->run();
+        }
+
+        $about = AboutUs::find(1);
+        return view('site.content.about-us',compact('about'));
+    }
     public function ShowBlog(Blog $blog)
     {
         $other_blogs = Blog::where('status', 1)
@@ -65,6 +84,6 @@ class HomeController extends Controller
             ->inRandomOrder()
             ->take(2)
             ->get();
-        return view('site.content.blog.show-blog', compact('blog','other_blogs'));
+        return view('site.content.blog.show-blog', compact('blog', 'other_blogs'));
     }
 }
