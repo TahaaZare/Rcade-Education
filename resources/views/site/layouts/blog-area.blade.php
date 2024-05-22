@@ -12,14 +12,14 @@
                     <div class="edu-blog blog-style-1 programming-sytle">
                         <div class="inner">
                             <div class="thumbnail">
-                                <a href="blog-details.html">
+                                <a href="{{ route('show-blog',$item->slug) }}">
                                     <img src="{{ asset($item->image) }}" alt="{{ $item->title }}">                                </a>
                             </div>
                             <div class="content">
                                 <div class="category-wrap">
                                     <a href="#" class="blog-category">{{ $item->category->name }}</a>
                                 </div>
-                                <h5 class="title"><a href="blog-details.html">{{ $item->title }}</a></h5>
+                                <h5 class="title"><a href="{{ route('show-blog',$item->slug) }}">{{ $item->title }}</a></h5>
                                 <ul class="blog-meta">
                                     <li class="d-flex"><i class="icon-27"></i>{{ jalaliShamsiDate($item->created_at) }}</li>
                                 </ul>

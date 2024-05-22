@@ -11,15 +11,14 @@ use App\Http\Controllers\Site\HomeController;
 use App\Models\Content\Course\CourseCategory;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-// return view('welcome');
-// });
-
 #region site
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'home')->name('home');
+    Route::get('blogs/{blog:slug}','ShowBlog')->name('show-blog');
 });
+
+
 
 #endregion
 

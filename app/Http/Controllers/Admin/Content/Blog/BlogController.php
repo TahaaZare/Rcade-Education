@@ -9,6 +9,7 @@ use App\Http\Services\Image\ImageService;
 use App\Models\Account\User;
 use App\Models\Content\Blog\Blog;
 use App\Models\Content\Blog\BlogCategory;
+use Hashids\Hashids;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -89,7 +90,15 @@ class BlogController extends Controller
                             $inputs['create_by'] = $user->id;
                             $inputs['meta_description'] = $request->description;
 
+
+
                             $blog = Blog::create($inputs);
+
+                            $hashids = new Hashids('your_salt_here', 6); // 'your_salt_here' should be replaced with your preferred salt and 6 is the length of the short link
+                            $short_link = $hashids->encode($blog->id);
+
+                            // Update the product with the short link
+                            $blog->update(['slug' => $short_link]);
 
                             DB::commit();
 
@@ -125,7 +134,7 @@ class BlogController extends Controller
                     if ($user->user_type == 2) {
                         $categories = BlogCategory::all();
 
-                        return view('admin.content.blog.edit', compact('user', 'blog','categories'));
+                        return view('admin.content.blog.edit', compact('user', 'blog', 'categories'));
                     } else {
                         Auth::logout();
                         abort(404);

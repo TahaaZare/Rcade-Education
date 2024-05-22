@@ -57,4 +57,14 @@ class HomeController extends Controller
         $courses = Course::all();
         return view('site.home', compact('faqs', 'blogs', 'course_categories', 'courses'));
     }
+
+    public function ShowBlog(Blog $blog)
+    {
+        $other_blogs = Blog::where('status', 1)
+            ->where('id', '!=', $blog->id) // Exclude the main blog
+            ->inRandomOrder()
+            ->take(2)
+            ->get();
+        return view('site.content.blog.show-blog', compact('blog','other_blogs'));
+    }
 }
