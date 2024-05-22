@@ -8,9 +8,6 @@
          </a>
 
      </div>
-     {{-- <div class="pageTitle">
-         مرور کنید
-     </div> --}}
      <div class="right">
          <a href="#" class="headerButton toggle-searchbox">
              <ion-icon name="search-outline">
@@ -18,15 +15,6 @@
              </ion-icon>
          </a>
      </div>
-     @auth
-     @php
-         $user = auth()->user();
-     @endphp
-     <span>
-         <i class="fas fa-location-dot"></i>
-         {{ $user->username }}
-     </span>
- @endauth
  </div>
  <!-- * App Header -->
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Content\Course\CourseCategoryController;
 use App\Http\Controllers\Admin\Content\Course\CourseController;
 use App\Http\Controllers\Admin\Content\Course\CourseEpisodeController;
 use App\Http\Controllers\Admin\Content\FaqController;
+use App\Http\Controllers\Site\Account\ProfileController;
 use App\Http\Controllers\Site\HomeController;
 use App\Models\Content\Course\CourseCategory;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,10 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('blogs/{blog:slug}', 'ShowBlog')->name('show-blog');
 });
 
-
+Route::controller(ProfileController::class)->prefix('my-profile')->group(function () {
+    Route::get('/{user:username}',"MyProfile")->name('user.profile');
+    Route::post('/{user:username}/update-bio',"UpdateBio")->name('update-bio');
+});
 
 #endregion
 

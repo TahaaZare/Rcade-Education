@@ -12,6 +12,7 @@
                                 $user = auth()->user();
                             @endphp
                             <li><a href="{{ route('admin.home', $user->username) }}">admin</a></li>
+                            <li><a href="{{ route('user.profile', $user->username) }}">profile</a></li>
                         @endauth
                         <li><a href="#">ورود</a></li>
                         <li><a href="#">ثبت‌نام</a></li>

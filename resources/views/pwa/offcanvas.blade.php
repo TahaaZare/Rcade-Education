@@ -10,7 +10,7 @@
                     <img src="{{ asset($user->profile) }}" alt="{{ $user->username }}" class="imaged rounded">
                 </div>
                 <div class="in">
-                    <strong>
+                    <strong aria-hidden="true">
                         {{ $user->display_name ?? $user->username }}
                     </strong>
                 </div>
