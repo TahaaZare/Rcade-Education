@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site\Account;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Content\Blog\StoreBlogRequest;
+use App\Http\Requests\Auth\ConfirmUserNameLogin;
 use App\Http\Requests\Site\Account\Blog\StoreUserBlogRequest;
 use App\Http\Requests\Site\Account\Blog\UpdateUserBlogRequest;
 use App\Http\Services\Image\ImageService;
@@ -17,32 +18,70 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
+    public function SelectUsername(User $user)
+    {
+        $auth_user = auth()->user();
+        if ($user->mobile == $auth_user->mobile) {
+            if ($auth_user->username != null) {
+                return redirect()->route('user.profile', $user->username);
+            } else {
+                return view('site.account.select-username', compact('user'));
+            }
+        } else {
+            Auth::logout();
+            abort(404);
+        }
+    }
+    public function ConfirmUsername(ConfirmUserNameLogin $request, User $user)
+    {
+        $auth_user = auth()->user();
+        if ($user->mobile == $auth_user->mobile) {
+            $auth_user = auth()->user();
+            if ($auth_user->username != null) {
+                return redirect()->route('user.profile', $user->username);
+            } else {
+                $user->update([
+                    'username' => $request->username
+                ]);
+                return redirect()->route('user.profile', $user->username)
+                    ->with('swal-success', 'خوش آمدید :)');
+            }
+        } else {
+            Auth::logout();
+            abort(404);
+        }
+    }
     public function MyProfile(User $user)
     {
         $auth_user = auth()->user();
         if ($auth_user != null) {
-            if ($auth_user->username == $user->username) {
-                if ($user != null) {
-                    if ($user->status == 1) {
-                        if ($user->ban == 0) {
-                            $user_blogs = Blog::where('user_id', $user->id)->where('create_by', $user->id)->get();
-                            return view('site.account.profile', compact('user', 'user_blogs'));
+            if ($user->username != null) {
+                if ($auth_user->username == $user->username) {
+                    if ($user != null) {
+                        if ($user->status == 1) {
+                            if ($user->ban == 0) {
+                                $user_blogs = Blog::where('user_id', $user->id)->where('create_by', $user->id)->get();
+                                return view('site.account.profile', compact('user', 'user_blogs'));
+                            } else {
+                                Auth::logout();
+                                return redirect()->route('home')
+                                    ->with('swal-warning', 'حساب شما مسدود شده است !');
+                            }
                         } else {
                             Auth::logout();
                             return redirect()->route('home')
-                                ->with('swal-warning', 'حساب شما مسدود شده است !');
+                                ->with('swal-warning', 'حساب شما غیر فعال میباشد !');
                         }
                     } else {
-                        Auth::logout();
-                        return redirect()->route('home')
-                            ->with('swal-warning', 'حساب شما غیر فعال میباشد !');
+                        return redirect()->route('home');
                     }
                 } else {
-                    return redirect()->route('home');
+                    Auth::logout();
+                    abort(404);
                 }
             } else {
-                Auth::logout();
-                abort(404);
+                return redirect()->route('select-username', $user)
+                    ->with('swal-success', 'ثبت نام شما با موفقیت انجام شد , لطفا نام کاربری خود را وارد کنید');
             }
         } else {
             return redirect()->route('home');
@@ -53,30 +92,35 @@ class ProfileController extends Controller
     {
         $auth_user = auth()->user();
         if ($auth_user != null) {
-            if ($auth_user->username == $user->username) {
-                if ($user != null) {
-                    if ($user->status == 1) {
-                        if ($user->ban == 0) {
-                            $user->update([
-                                'bio' => $request->bio
-                            ]);
-                            return back()->with('swal-success', 'عملیات با موفقیت انجام شد.');
+            if ($user->username != null) {
+                if ($auth_user->username == $user->username) {
+                    if ($user != null) {
+                        if ($user->status == 1) {
+                            if ($user->ban == 0) {
+                                $user->update([
+                                    'bio' => $request->bio
+                                ]);
+                                return back()->with('swal-success', 'عملیات با موفقیت انجام شد.');
+                            } else {
+                                Auth::logout();
+                                return redirect()->route('home')
+                                    ->with('swal-warning', 'حساب شما مسدود شده است !');
+                            }
                         } else {
                             Auth::logout();
                             return redirect()->route('home')
-                                ->with('swal-warning', 'حساب شما مسدود شده است !');
+                                ->with('swal-warning', 'حساب شما غیر فعال میباشد !');
                         }
                     } else {
-                        Auth::logout();
-                        return redirect()->route('home')
-                            ->with('swal-warning', 'حساب شما غیر فعال میباشد !');
+                        return redirect()->route('home');
                     }
                 } else {
-                    return redirect()->route('home');
+                    Auth::logout();
+                    abort(404);
                 }
             } else {
-                Auth::logout();
-                abort(404);
+                return redirect()->route('select-username', $user)
+                    ->with('swal-success', 'ثبت نام شما با موفقیت انجام شد , لطفا نام کاربری خود را وارد کنید');
             }
         } else {
             return redirect()->route('home');

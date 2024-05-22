@@ -27,7 +27,7 @@
                     <img src="{{ asset('static-img/user-avatar.png') }}" alt="image" class="imaged rounded">
                 </div>
                 <div class="in">
-                    <a class="text-dark" href="{{ route('auth.customer.login-register-form') }}">
+                    <a class="text-dark" href="{{ route('loginForm') }}">
                         ورود به با شماره تماس</a>
                 </div>
                 <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">

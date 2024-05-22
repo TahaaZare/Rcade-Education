@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Content\Course\CourseCategoryController;
 use App\Http\Controllers\Admin\Content\Course\CourseController;
 use App\Http\Controllers\Admin\Content\Course\CourseEpisodeController;
 use App\Http\Controllers\Admin\Content\FaqController;
+use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\Site\Account\ProfileController;
 use App\Http\Controllers\Site\HomeController;
 use App\Models\Content\Course\CourseCategory;
@@ -35,7 +36,20 @@ Route::controller(ProfileController::class)->prefix('my-profile')->group(functio
 
     Route::get('/{user:username}/edit-blog/{blog}', "EditBlog")->name('user-edit-blog');
     Route::put('/{user:username}/update-blog/{blog}', "UpdateBlog")->name('user-update-blog');
+
+    Route::get('select-username/{user:mobile}', "SelectUsername")->name('select-username');
+    Route::post('confirm-username/{user:mobile}', "ConfirmUsername")->name('confirm-username');
 });
+
+Route::prefix('auth')->group(function () {
+    Route::get('login-form', [LoginRegisterController::class, 'loginForm'])->name('loginForm');
+    Route::post('/login-confrim', [LoginRegisterController::class, 'loginRegister'])->name('auth.login-register');
+    Route::get('login-confirm/{token}', [LoginRegisterController::class, 'loginConfirmForm'])->name('auth.login-confirm-form');
+    Route::post('/login-confirm/{token}', [LoginRegisterController::class, 'loginConfirm'])->name('auth.login-confirm');
+    Route::get('/login-resend-otp/{token}', [LoginRegisterController::class, 'loginResendOtp'])->name('auth.login-resend-otp');
+    Route::get('/logout', [LoginRegisterController::class, 'logout'])->name('user.logout');
+});
+
 
 #endregion
 

@@ -18,6 +18,14 @@ class HomeController extends Controller
 {
     public function home()
     {
+        $auth_user = auth()->user();
+        if ($auth_user != null) {
+            if ($auth_user->username == null) {
+                return redirect()->route('select-username', $auth_user)
+                    ->with('swal-success', 'ثبت نام شما با موفقیت انجام شد , لطفا نام کاربری خود را وارد کنید');
+            }
+        }
+
         #region check user profile
 
         $users = User::all();
@@ -56,8 +64,7 @@ class HomeController extends Controller
 
         #endregion
 
-        $au = User::find(1);
-        Auth::login($au);
+
 
         $faqs = Faq::where('status', 1)->take(4)->get();
         $blogs = Blog::where('status', 1)->orderBy('created_at', 'desc')->take(6)->get();

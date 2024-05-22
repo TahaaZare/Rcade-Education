@@ -11,11 +11,11 @@
                             @php
                                 $user = auth()->user();
                             @endphp
-                            <li><a href="{{ route('admin.home', $user->username) }}">admin</a></li>
                             <li><a href="{{ route('user.profile', $user->username) }}">profile</a></li>
                         @endauth
-                        <li><a href="#">ورود</a></li>
-                        <li><a href="#">ثبت‌نام</a></li>
+                        @guest
+                            <li><a href="{{ route('loginForm') }}">ورود / ثبت نام</a></li>
+                        @endguest
                         <li><a href="mailto:{{ $email }}" target="_blank"><i class="icon-envelope"></i>ایمیل:
                                 {{ $email }}</a></li>
                         <li class="social-icon">
