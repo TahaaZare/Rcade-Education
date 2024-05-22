@@ -23,13 +23,42 @@
         <hr>
         <div class="row">
             @foreach ($courses as $item)
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col-lg-4 col-md-6 col-sm-12  py-3">
                     <div class="card product-card">
                         <div class="card-body">
                             <img src="{{ asset($item->image) }}" class="image" alt="{{ $item->name }}">
-                            <h2 class="title d-flex justify-content-center">
-                                {{ $item->name }}
-                            </h2>
+                            <div class="d-flex justify-content-between">
+                                <h2 class="title d-flex justify-content-center">
+                                    {{ $item->name }}
+                                </h2>
+
+                                <div class="dropdown">
+                                    <button class="btn btn-transparent text-white-50 " type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="fas fa-ellipsis-h fa-lg"></i>
+                                    </button>
+                                    <div class="dropdown-menu " style="">
+                                        <a href="{{ route('admin.course.edit', [$user->username, $item]) }}"
+                                            class="btn btn-sm btn-warning p-2 dropdown-item">
+                                            ویرایش
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="{{ route('admin.course.edit', [$user->username, $item]) }}"
+                                            class="btn btn-sm btn-primary p-2 dropdown-item">
+                                            افزودن ویدیو جدید
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <form action="{{ route('admin.course.delete', [$user->username, $item]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger dropdown-item">
+                                                حذفــ </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
                             <br>
                             <h3 class="title d-flex justify-content-between">
 
@@ -65,20 +94,13 @@
                                 @endif
                             </h3>
                             <br>
-
                             <div class="price">
                                 ایجاد شده توسط : {{ $item->user->username }} -
                                 {{ jalaliDate($item->created_at) }}
                             </div>
-                            <a href="{{ route('admin.course.edit', [$user->username, $item]) }}"
-                                class="btn btn-sm btn-warning btn-block my-2">ویرایش</a>
-                            <form action="{{ route('admin.course.delete', [$user->username, $item]) }}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-danger btn-block">
-                                    حذفــ
-                                </button>
-                            </form>
+
+
+
                         </div>
                     </div>
                 </div>
