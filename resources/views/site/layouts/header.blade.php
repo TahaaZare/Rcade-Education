@@ -36,7 +36,7 @@
             <div class="header-navbar">
                 <div class="header-brand">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="{{ route('home') }}">
                             <img class="logo-light" style="width: 100px;height:100px"
                                 src="{{ asset('site-assets/assets/images/logo/logo.png') }}" alt="Corporate Logo">
                             <img class="logo-dark" style="width: 100px;height:100px"

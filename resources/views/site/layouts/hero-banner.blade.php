@@ -3,12 +3,10 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <div class="banner-content">
-                    <h1 class="title" data-sal-delay="100" data-sal="slide-up" data-sal-duration="1000">آموزش آنلاین <br> <span
-                            class="color-secondary">برنامه نویسی</span> خود را با بلینک ایجاد کنید</h1>
-                    <p data-sal-delay="200" data-sal="slide-up" data-sal-duration="1000">لورم ایپسوم متن ساختگی با تولید
-                        سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+                    <h1 class="title" data-sal-delay="100" data-sal="slide-up" data-sal-duration="1000"><br> <span
+                            class="color-secondary">ما اینجا آموزش نمیدیم !</span> یاد میدیم چطور انجامش بدین :)</h1>
                     <div class="banner-btn" data-sal-delay="400" data-sal="slide-up" data-sal-duration="1000">
-                        <a href="course-one.html" class="edu-btn">پیدا کردن دوره <i class="icon-west"></i></a>
+                        <a href="{{ route('courses') }}" class="edu-btn">پیدا کردن دوره <i class="icon-west"></i></a>
                     </div>
                     <ul class="shape-group">
                         <li class="shape-1" data-sal-delay="1000" data-sal="fade" data-sal-duration="1000">
