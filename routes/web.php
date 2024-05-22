@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Content\Blog\BlogCategoryController;
 use App\Http\Controllers\Admin\Content\Blog\BlogController;
 use App\Http\Controllers\Admin\Content\Course\CourseCategoryController;
 use App\Http\Controllers\Admin\Content\Course\CourseController;
+use App\Http\Controllers\Admin\Content\Course\CourseEpisodeController;
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Site\HomeController;
 use App\Models\Content\Course\CourseCategory;
@@ -84,6 +85,16 @@ Route::controller(AdminController::class)->prefix('admin')->group(function () {
             Route::get('{user:username}/edit/{course}', 'edit')->name('admin.course.edit');
             Route::put('{user:username}/update/{course}', 'update')->name('admin.course.update');
             Route::delete('{user:username}/delete/{course}', 'delete')->name('admin.course.delete');
+        });
+
+
+        Route::controller(CourseEpisodeController::class)->prefix('course-episode')->group(function () {
+            Route::get('{user:username}/', 'index')->name('admin.course-episode.index');
+            Route::get('{user:username}/create/{course}', 'create')->name('admin.course-episode.create');
+            Route::post('{user:username}/store/{course}', 'store')->name('admin.course-episode.store');
+            Route::get('{user:username}/edit/{episode}/{course}', 'edit')->name('admin.course-episode.edit');
+            Route::put('{user:username}/update/{episode}/{course}', 'update')->name('admin.course-episode.update');
+            Route::delete('{user:username}/delete/{episode}/{course}', 'delete')->name('admin.course-episode.delete');
         });
 
 
