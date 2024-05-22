@@ -78,6 +78,8 @@ class HomeController extends Controller
         return view('site.content.about-us', compact('about'));
     }
 
+    #region blog section
+
     public function Blogs()
     {
         $blogs = Blog::where('status', 1)->where('slug', '!=', null)->take(4)->get();
@@ -96,4 +98,26 @@ class HomeController extends Controller
             return redirect()->route('blogs')->with('swal-warning', 'مقاله ایی یافت نشــد !');
         }
     }
+
+    #endregion
+
+    #region course section
+
+
+    public function Courses()
+    {
+        $courses = Course::where('status', 1)->where('slug', '!=', null)->paginate(9);
+        return view('site.content.course.courses', compact('courses'));
+    }
+
+    public function ShowCourse(Course $course)
+    {
+        if ($course->status == 1 && $course->slug != null) {
+            return view('site.content.course.show-course', compact('course'));
+        } else {
+            return redirect()->route('courses')->with('swal-warning', 'دوره ایی یافت نشــد !');
+        }
+    }
+
+    #endregion
 }

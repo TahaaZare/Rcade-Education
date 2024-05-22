@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('master_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('course_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('create_by')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
 
             $table->string('name');
-            $table->string('summary',120);
+            $table->string('summary', 120);
             $table->longText('description');
             $table->text('image');
             $table->decimal('price', 20, 3);

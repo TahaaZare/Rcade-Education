@@ -12,6 +12,7 @@ class Course extends Model
     use HasFactory;
     protected $table = 'courses';
     protected $fillable = [
+        'category_id',
         'master_id',
         'create_by',
         'name',
@@ -29,6 +30,12 @@ class Course extends Model
         'meta_keywords',
         'meta_description',
     ];
+
+    public function cat($id)
+    {
+        $category = CourseCategory::find($id);
+        return $category;
+    }
 
     public function category()
     {

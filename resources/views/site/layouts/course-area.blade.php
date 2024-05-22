@@ -53,11 +53,11 @@
             <!-- End Single Course  -->
         </div>
         <div class="course-view-all" data-sal-delay="150" data-sal="slide-up" data-sal-duration="1200">
-            <a href="course-one.html" class="edu-btn">دوره‌های بیشتر <i class="icon-west"></i></a>
+            <a href="{{ route('courses') }}" class="edu-btn">دوره‌های بیشتر <i class="icon-west"></i></a>
         </div>
         <ul class="shape-group">
             <li class="shape-1 scene" data-sal-delay="500" data-sal="fade" data-sal-duration="200">
-                <img data-depth="-2" src="assets/images/about/shape-13.png" alt="Shape">
+                <img data-depth="-2" src="{{ asset('site-assets/assets/images/about/shape-13.png') }}" alt="Shape">
             </li>
             <li class="shape-2 scene" data-sal-delay="500" data-sal="fade" data-sal-duration="200">
                 <span data-depth="1"></span>
