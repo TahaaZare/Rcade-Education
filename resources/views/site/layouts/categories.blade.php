@@ -13,7 +13,7 @@
                             <img src="{{ asset($item->image) }}" class="icon" style="border-radius: 100%" alt="">
                         </div>
                         <div class="content">
-                            <a href="course-one.html">
+                            <a href="">
                                 <h5 class="title">{{ $item->name }}</h5>
                             </a>
                         </div>

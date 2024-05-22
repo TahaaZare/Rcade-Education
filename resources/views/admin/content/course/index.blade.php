@@ -78,13 +78,13 @@
                                 </span>
                                 <span class="badge bg-info rounded mx2">
                                     @if ($item->course_status == 0)
-                                        مقدماتی
+                                        به زودی . . .
                                     @elseif($item->course_status == 1)
-                                        معمولی
+                                        در حال ظبط
                                     @elseif ($item->course_status == 2)
-                                        سخت
+                                        در حال برگزاری
                                     @elseif ($item->course_status == 3)
-                                        پیشرفته
+                                        به اتمام رسیده
                                     @endif
                                 </span>
                                 @if ($item->status == 1)

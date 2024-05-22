@@ -12,7 +12,7 @@
                     <div class="edu-course course-style-4">
                         <div class="inner">
                             <div class="thumbnail">
-                                <a href="">
+                                <a href="{{ route('show-course', $item->slug) }}">
                                     <img src="{{ asset($item->image) }}" alt="{{ $item->name }}">
                                 </a>
                             </div>
@@ -29,7 +29,8 @@
                                     @endif
                                 </div>
                                 <h6 class="title">
-                                    <a href="">{{ $item->name }}</a>
+                                    <a href="{{ route('show-course', $item->slug) }}">
+                                        {{ $item->name }}</a>
                                 </h6>
                                 <div class="course-rating">
                                     <div class="rating">

@@ -132,11 +132,26 @@
                                             </span>
                                         </li>
                                         <li>
+                                            <span class="label"><i class="icon-63"></i>وضعیت دوره :</span>
+                                            <span class="value">
+                                                @if ($course->course_status == 0)
+                                                    به زودی . . .
+                                                @elseif($course->course_status == 1)
+                                                    در حال ظبط
+                                                @elseif ($course->course_status == 2)
+                                                    در حال برگزاری
+                                                @elseif ($course->course_status == 3)
+                                                    به اتمام رسیده
+                                                @endif
+                                            </span>
+                                        </li>
+                                        <li>
                                             <span class="label"><i class="icon-62"></i>مدرس:</span>
                                             <span class="value">
                                                 {{ $course->master->display_name ?? $course->master->username }}
                                             </span>
                                         </li>
+
                                         <li>
                                             <span class="label"><i class="icon-63"></i>دانشجو :</span>
                                             <span class="value">0</span>
