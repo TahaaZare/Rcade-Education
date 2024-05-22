@@ -27,10 +27,10 @@
                                     alt="animated icon">
                             </div>
                             <div class="content">
-                                <h5 class="title">3,020 <br> دوره آنلاین</h5>
+                                <h5 class="title">{{ $courses->count() }} <br> دوره آنلاین</h5>
                             </div>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>

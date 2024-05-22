@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Models\Account\User;
 use App\Models\Content\Blog\Blog;
+use App\Models\Content\Course\Course;
 use App\Models\Content\Course\CourseCategory;
 use App\Models\Content\Site\Faq;
 use Database\Seeders\UserSeeder;
@@ -53,6 +54,7 @@ class HomeController extends Controller
         $faqs = Faq::where('status', 1)->take(4)->get();
         $blogs = Blog::where('status', 1)->orderBy('created_at', 'desc')->take(6)->get();
         $course_categories = CourseCategory::all();
-        return view('site.home', compact('faqs','blogs','course_categories'));
+        $courses = Course::all();
+        return view('site.home', compact('faqs', 'blogs', 'course_categories', 'courses'));
     }
 }
