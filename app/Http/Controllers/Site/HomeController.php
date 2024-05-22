@@ -62,7 +62,7 @@ class HomeController extends Controller
         $faqs = Faq::where('status', 1)->take(4)->get();
         $blogs = Blog::where('status', 1)->orderBy('created_at', 'desc')->take(6)->get();
         $course_categories = CourseCategory::all();
-        $courses = Course::all();
+        $courses = Course::take(9)->get();
         return view('site.home', compact('faqs', 'blogs', 'course_categories', 'courses'));
     }
 
@@ -75,15 +75,25 @@ class HomeController extends Controller
         }
 
         $about = AboutUs::find(1);
-        return view('site.content.about-us',compact('about'));
+        return view('site.content.about-us', compact('about'));
+    }
+
+    public function Blogs()
+    {
+        $blogs = Blog::where('status', 1)->where('slug', '!=', null)->take(4)->get();
+        return view('site.content.blog.blogs', compact('blogs'));
     }
     public function ShowBlog(Blog $blog)
     {
-        $other_blogs = Blog::where('status', 1)
-            ->where('id', '!=', $blog->id) // Exclude the main blog
-            ->inRandomOrder()
-            ->take(2)
-            ->get();
-        return view('site.content.blog.show-blog', compact('blog', 'other_blogs'));
+        if ($blog->status != 0 && $blog->slug != null) {
+            $other_blogs = Blog::where('status', 1)
+                ->where('id', '!=', $blog->id) // Exclude the main blog
+                ->inRandomOrder()
+                ->take(2)
+                ->get();
+            return view('site.content.blog.show-blog', compact('blog', 'other_blogs'));
+        } else {
+            return redirect()->route('blogs')->with('swal-warning', 'مقاله ایی یافت نشــد !');
+        }
     }
 }

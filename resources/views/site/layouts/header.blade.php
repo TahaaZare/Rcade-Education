@@ -48,6 +48,7 @@
                     <nav class="mainmenu-nav">
                         <ul class="mainmenu">
                             <li><a href="{{ route('home') }}">صفحه اصلی</a></li>
+                            <li><a href="{{ route('blogs') }}">مقالات</a></li>
                             <li class="has-droupdown"><a href="#">لینک های مفید</a>
                                 <ul class="submenu">
                                     <li><a href="{{ route('about-us') }}" wire:navigate>درباره ما</a></li>

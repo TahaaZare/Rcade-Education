@@ -7,6 +7,7 @@
         <div class="row g-5">
             <!-- Start Blog Grid  -->
             @foreach ($blogs as $item)
+            
                 <div class="col-lg-4 col-md-6 col-12 sal-animate sha" data-sal-delay="100" data-sal="slide-up"
                     data-sal-duration="800">
                     <div class="edu-blog blog-style-1 programming-sytle">
