@@ -26,7 +26,7 @@ class UpdateBlogRequest extends FormRequest
             'category_id' => ['required', 'exists:blog_categories,id'],
             'description' => ['required'],
             'image' => ['sometimes', 'mimes:png,jpg,jpeg,gif,webp'],
-            'status' => ['required', 'in:0,1'],
+            'status' => ['required', 'in:0,1,2'],
         ];
     }
 }

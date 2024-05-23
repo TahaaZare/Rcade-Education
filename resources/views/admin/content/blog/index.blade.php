@@ -30,8 +30,10 @@
                             <h2 class="title d-flex justify-content-between">{{ $item->title }}
                                 @if ($item->status == 1)
                                     <span class="badge bg-success rounded mx2">فعال</span>
+                                @elseif($item->status == 0)
+                                    <span class="badge bg-primary rounded mx2">در انتظار تایید . . .</span>
                                 @else
-                                    <span class="badge bg-danger rounded mx2">غیرفعال</span>
+                                    <span class="badge bg-danger rounded mx2">رد شده !</span>
                                 @endif
                             </h2>
                             <p class="text">

@@ -10,6 +10,7 @@ use App\Models\Account\User;
 use App\Models\Content\Blog\Blog;
 use App\Models\Content\Blog\BlogCategory;
 use Hashids\Hashids;
+use Illuminate\Support\Str;
 use Cryptommer\Smsir\Smsir;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -177,6 +178,14 @@ class BlogController extends Controller
                                 } else {
                                     $send_notifications = 0;
                                 }
+                            } elseif ($request->old_status == 1) {
+                                if ($request->status == 2) {
+                                    $send_notifications = 2;
+                                }
+                            } elseif ($request->old_status == 2) {
+                                if ($request->status == 1) {
+                                    $send_notifications = 1;
+                                }
                             }
 
                             $inputs = $request->all();
@@ -193,8 +202,6 @@ class BlogController extends Controller
                                 $inputs['image'] = $result;
                             }
 
-                            $inputs['user_id'] = $user->id;
-                            $inputs['create_by'] = $user->id;
                             $inputs['meta_description'] = $request->description;
                             $blog->update($inputs);
 
@@ -204,10 +211,8 @@ class BlogController extends Controller
 
                             if ($send_notifications == 1) {
                                 $name = "USER";
-                                $value = $user->mobile;
-
-                                $name2 = "BLOG";
-                                $value2 = "$blog->title";
+                                $find_mobile = User::find($blog->user_id);
+                                $value = $find_mobile->mobile;
 
                                 $name3 = "SLUG";
                                 $value3 = "$blog->slug";
@@ -215,19 +220,20 @@ class BlogController extends Controller
                                 $send = smsir::Send();
 
                                 $parameter = new \Cryptommer\Smsir\Objects\Parameters($name, $value);
-                                $parameter2 = new \Cryptommer\Smsir\Objects\Parameters($name2, $value2);
                                 $parameter3 = new \Cryptommer\Smsir\Objects\Parameters($name3, $value3);
-                                $parameters = array($parameter, $parameter2, $parameter3);
+                                $parameters = array($parameter, $parameter3);
 
 
-                                $send->Verify($user->mobile, 577998, $parameters);
+                                $send->Verify($find_mobile->mobile, 577998, $parameters);
                             } elseif ($send_notifications == 2) {
                                 $name = "USER";
-                                $value = $user->mobile;
+                                $find_mobile = User::find($blog->user_id);
 
-                                $name2 = "BLOG";
-                                $value2 = "$blog->title";
+                                $value = $find_mobile->mobile;
 
+                                $name2 = "USERNAME";
+
+                                $value2 =  $find_mobile->username;
                                 $send = smsir::Send();
 
                                 $parameter = new \Cryptommer\Smsir\Objects\Parameters($name, $value);
@@ -235,7 +241,7 @@ class BlogController extends Controller
                                 $parameters = array($parameter, $parameter2);
 
 
-                                $send->Verify($user->mobile, 332724, $parameters);
+                                $send->Verify($find_mobile->mobile, 332724, $parameters);
                             }
 
 

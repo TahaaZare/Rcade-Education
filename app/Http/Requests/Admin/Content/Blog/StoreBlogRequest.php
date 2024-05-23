@@ -26,7 +26,7 @@ class StoreBlogRequest extends FormRequest
             'category_id' => ['required', 'exists:blog_categories,id'],
             'description' => ['required'],
             'image' => ['required', 'mimes:png,jpg,jpeg,gif,webp'],
-            'status' => ['required', 'in:0,1'],
+            'status' => ['required', 'in:0,1,2'],
         ];
     }
 }
