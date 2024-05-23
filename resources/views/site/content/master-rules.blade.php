@@ -1,5 +1,5 @@
 @extends('pwa.master')
-@section('title', 'درباره ما')
+@section('title', 'مدرس شـو')
 @section('app-menu')
     @include('pwa.app-button-menu')
 @endsection
@@ -9,11 +9,11 @@
 @section('content')
     <div class="section mt-2">
         <div class="card">
-            <div class="card-header bg-success" aria-hidden="true">
-                درباره مـا
+            <div class="card-header">
+                مدرس شــو
             </div>
             <div class="card-body">
-                {!! $about->description !!}
+                {!! $rule->description !!}
             </div>
         </div>
     </div>

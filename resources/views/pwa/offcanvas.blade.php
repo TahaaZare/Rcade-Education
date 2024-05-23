@@ -23,9 +23,6 @@
         @endauth
         @guest
             <div class="profileBox">
-                <div class="image-wrapper">
-                    <img src="{{ asset('static-img/user-avatar.png') }}" alt="image" class="imaged rounded">
-                </div>
                 <div class="in">
                     <a class="text-dark" href="{{ route('loginForm') }}">
                         ورود به با شماره تماس</a>
@@ -52,6 +49,43 @@
                     </div>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('courses') }}" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="home-outline">
+                            <i class="fas fa-user-graduate" aria-hidden="true"></i>
+                        </ion-icon>
+                    </div>
+                    <div class="in">
+                        دوره ها
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('blogs') }}" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="home-outline">
+                            <i class="fas fa-newspaper" aria-hidden="true"></i>
+                        </ion-icon>
+                    </div>
+                    <div class="in">
+                        مقالات
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('about-us') }}" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="home-outline">
+                            <i class="fas fa-user-friends" aria-hidden="true"></i>
+                        </ion-icon>
+                    </div>
+                    <div class="in">
+                        درباره مـا
+                    </div>
+                </a>
+            </li>
+
             @auth
                 @php
                     $user = auth()->user();
@@ -108,6 +142,18 @@
                             </div>
                             <div class="in">
                                 درباره مـا
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.rule.index', $user->username) }}" class="item">
+                            <div class="icon-box bg-primary">
+                                <ion-icon name="home-outline">
+                                    <i class="fas fa-user-friends" aria-hidden="true"></i>
+                                </ion-icon>
+                            </div>
+                            <div class="in">
+                                قوانین ثبت مدرس
                             </div>
                         </a>
                     </li>

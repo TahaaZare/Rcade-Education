@@ -54,7 +54,7 @@
                             <li class="has-droupdown"><a href="#">لینک های مفید</a>
                                 <ul class="submenu">
                                     <li><a href="{{ route('about-us') }}" wire:navigate>درباره ما</a></li>
-                                    <li><a href="" wire:navigate>تماس با ما</a></li>
+                                    <li><a href="{{ route('master-rules') }}" wire:navigate>مدرس شـو</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -94,8 +94,8 @@
                 <li><a href="{{ route('home') }}">صفحه اصلی</a></li>
                 <li class="has-droupdown"><a href="#">لینک های مفید</a>
                     <ul class="submenu">
-                        <li><a href="">درباره ما</a></li>
-                        <li><a href="">تماس با ما</a></li>
+                        <li><a href="{{ route('about-us') }}">درباره ما</a></li>
+                        <li><a href="{{ route('master-rules') }}">مدرس شـو</a></li>
                     </ul>
                 </li>
                 <li class="has-droupdown"><a href="#">ورود به حساب</a>

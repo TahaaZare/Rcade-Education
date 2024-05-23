@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Content\Course\CourseCategoryController;
 use App\Http\Controllers\Admin\Content\Course\CourseController;
 use App\Http\Controllers\Admin\Content\Course\CourseEpisodeController;
 use App\Http\Controllers\Admin\Content\FaqController;
+use App\Http\Controllers\Admin\Content\MasterRulseController;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\Site\Account\ProfileController;
 use App\Http\Controllers\Site\HomeController;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'home')->name('home');
+    Route::get('/master-rules', 'MasterRules')->name('master-rules');
     Route::get('/about-us', 'AboutUs')->name('about-us');
 
     Route::get('courses', 'Courses')->name('courses');
@@ -62,6 +64,12 @@ Route::controller(AdminController::class)->prefix('admin')->group(function () {
     Route::prefix('content')->group(function () {
 
         #region faq & about us
+
+        Route::controller(MasterRulseController::class)->prefix('rule')->group(function () {
+            Route::get('{user:username}/', 'index')->name('admin.rule.index');
+            Route::get('{user:username}/edit/{rule}', 'edit')->name('admin.rule.edit');
+            Route::put('{user:username}/update/{rule}', 'update')->name('admin.rule.update');
+        });
 
         Route::controller(AboutUsController::class)->prefix('about')->group(function () {
             Route::get('{user:username}/', 'index')->name('admin.about.index');
