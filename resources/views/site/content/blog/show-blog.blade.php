@@ -25,11 +25,16 @@
 
                     <div class="blog-author">
                         <div class="thumbnail">
-                            <img class="shadow" src="{{ asset($blog->user($blog->user_id)->profile) }}"
-                                alt="{{ $blog->user($blog->user_id)->username }}">
+                            <a href="{{ route('user-profile', $blog->user($blog->user_id)->username) }}">
+                                <img class="shadow" src="{{ asset($blog->user($blog->user_id)->profile) }}"
+                                    alt="{{ $blog->user($blog->user_id)->username }}">
+                            </a>
                         </div>
                         <div class="author-content">
-                            <h5 class="title">{{ $blog->user($blog->user_id)->username }}</h5>
+                            <a href="{{ route('user-profile', $blog->user($blog->user_id)->username) }}">
+                                <h5 class="title">
+                                    {{ $blog->user($blog->user_id)->username }}</h5>
+                            </a>
                             <div class="container">
                                 {!! $blog->user($blog->user_id)->bio !!}
                             </div>

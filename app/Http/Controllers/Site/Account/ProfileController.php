@@ -9,6 +9,8 @@ use App\Http\Requests\Site\Account\Blog\StoreUserBlogRequest;
 use App\Http\Requests\Site\Account\Blog\UpdateUserBlogRequest;
 use App\Http\Services\Image\ImageService;
 use App\Models\Account\User;
+use App\Models\Account\UserPoint;
+use App\Models\Account\UserPointLog;
 use App\Models\Content\Blog\Blog;
 use App\Models\Content\Blog\BlogCategory;
 use Hashids\Hashids;
@@ -245,6 +247,25 @@ class ProfileController extends Controller
 
 
                                 $blog = Blog::create($inputs);
+
+                                $find_user_points = UserPoint::find($user->id);
+                                if ($find_user_points != null) {
+                                    $find_user_points->update([
+                                        'point' => $find_user_points->point + 30
+                                    ]);
+                                } else {
+                                    $user_point = UserPoint::create([
+                                        'user_id' => $user->id,
+                                        'point' => 30
+                                    ]);
+
+                                    UserPointLog::create([
+                                        'user_id' => $user->id,
+                                        'point_id' => $user_point->id,
+                                        'log' => 'BLOG'
+                                    ]);
+                                }
+
 
                                 $hashids = new Hashids('your_salt_here', 6); // 'your_salt_here' should be replaced with your preferred salt and 6 is the length of the short link
                                 $short_link = $hashids->encode($blog->id);
