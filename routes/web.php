@@ -29,18 +29,25 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('blogs/{blog:slug}', 'ShowBlog')->name('show-blog');
 });
 
-Route::controller(ProfileController::class)->prefix('my-profile')->group(function () {
-    Route::get('/{user:username}', "MyProfile")->name('user.profile');
-    Route::post('/{user:username}/update-bio', "UpdateBio")->name('update-bio');
 
-    Route::get('/{user:username}/create-blog', "CreateBlog")->name('user-create-blog');
-    Route::post('/{user:username}/store-blog', "StoreBlog")->name('user-store-blog');
 
-    Route::get('/{user:username}/edit-blog/{blog}', "EditBlog")->name('user-edit-blog');
-    Route::put('/{user:username}/update-blog/{blog}', "UpdateBlog")->name('user-update-blog');
+Route::controller(ProfileController::class)->group(function () {
 
-    Route::get('select-username/{user:mobile}', "SelectUsername")->name('select-username');
-    Route::post('confirm-username/{user:mobile}', "ConfirmUsername")->name('confirm-username');
+    Route::get('/{user:username}', 'UserProfile')->name('user-profile');
+
+    Route::prefix('my-profile')->group(function () {
+        Route::get('/{user:username}', "MyProfile")->name('user.profile');
+        Route::post('/{user:username}/update-bio', "UpdateBio")->name('update-bio');
+
+        Route::get('/{user:username}/create-blog', "CreateBlog")->name('user-create-blog');
+        Route::post('/{user:username}/store-blog', "StoreBlog")->name('user-store-blog');
+
+        Route::get('/{user:username}/edit-blog/{blog}', "EditBlog")->name('user-edit-blog');
+        Route::put('/{user:username}/update-blog/{blog}', "UpdateBlog")->name('user-update-blog');
+
+        Route::get('select-username/{user:mobile}', "SelectUsername")->name('select-username');
+        Route::post('confirm-username/{user:mobile}', "ConfirmUsername")->name('confirm-username');
+    });
 });
 
 Route::prefix('auth')->group(function () {

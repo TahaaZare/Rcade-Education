@@ -55,6 +55,16 @@ class ProfileController extends Controller
             abort(404);
         }
     }
+
+    public function UserProfile(User $user)
+    {
+        $auth_user = auth()->user();
+        $user_blogs = Blog::where('status', 1)->where('user_id', $user->id)->where('create_by', $user->id)->get();
+
+        return view('site.account.user-profile', compact('user', 'user_blogs'));
+    }
+
+
     public function MyProfile(User $user)
     {
         $auth_user = auth()->user();
