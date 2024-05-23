@@ -24,7 +24,7 @@ class User extends Authenticatable
         "email",
         "profile",
         "user_type",
-        "gc_status",
+        "status",
         "ban",
         "password",
         "mobile_verified_at",

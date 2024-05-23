@@ -35,15 +35,19 @@ class ProfileController extends Controller
     public function ConfirmUsername(ConfirmUserNameLogin $request, User $user)
     {
         $auth_user = auth()->user();
+
+        // Remove spaces from the username
+        $username = str_replace(' ', '', $request->username);
+
         if ($user->mobile == $auth_user->mobile) {
             $auth_user = auth()->user();
             if ($auth_user->username != null) {
                 return redirect()->route('user.profile', $user->username);
             } else {
                 $user->update([
-                    'username' => $request->username
+                    'username' => $username
                 ]);
-                return redirect()->route('user.profile', $user->username)
+                return redirect()->route('user.profile', $username)
                     ->with('swal-success', 'خوش آمدید :)');
             }
         } else {

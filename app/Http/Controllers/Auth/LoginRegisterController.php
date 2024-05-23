@@ -43,29 +43,58 @@ class LoginRegisterController extends Controller
                 $inputs['id'] = str_replace('+98', '', $inputs['id']);
 
                 $user = User::where('mobile', $inputs['id'])->first();
-                if ($user->status == 0) {
-                    return back()->with('swal-warning', 'حساب شما غیرفعال میباشد !');
-                }
-                if ($user->ban == 1) {
-                    return back()->with('swal-warning', 'حساب کاربری شما مسدود میباشد  !');
-                }
 
-                if (empty($user)) {
+                if ($user == null) {
                     $newUser['mobile'] = $inputs['id'];
+
+                    $new_user = User::create(
+                        [
+                            'mobile' => $newUser['mobile'],
+                            'status' => 1
+                        ]
+                    );
+
+
+                    $otpCode = rand(1111, 9999);
+                    $token = Str::random(60);
+                    $otpInputs = [
+                        'token' => $token,
+                        'user_id' => $new_user->id,
+                        'otp_code' => $otpCode,
+                        'login_id' => $inputs['id'],
+                        'type' => $type,
+                    ];
+
+                    Otp::create($otpInputs);
+                    if ($type === 1) {
+                        return redirect()->back()->with('swal-warning', 'لطفا شماره تماس خود را وارد کنید');
+                    }
+                    $name = "CODE";
+                    $value = "$otpCode";
+                    $send = smsir::Send();
+
+                    $parameter = new \Cryptommer\Smsir\Objects\Parameters($name, $value);
+                    $parameters = array($parameter);
+
+                    $send->Verify($new_user->mobile, 100000, $parameters);
+
+
+                    return redirect()->route('auth.login-confirm-form', $token);
+                } else {
+                    if ($user->status == 0) {
+                        return back()->with('swal-warning', 'حساب شما غیرفعال میباشد !');
+                    }
+                    if ($user->ban == 1) {
+                        return back()->with('swal-warning', 'حساب کاربری شما مسدود میباشد  !');
+                    }
                 }
             } else {
                 $errorText = 'شناسه ورودی شما نه شماره موبایل است نه ایمیل';
                 return redirect()->route('loginForm')->withErrors(['id' => $errorText]);
             }
 
-            if (empty($user)) {
-                return back()->with('swal-warning', 'حسابی یافت نشد !');
-            }
 
-            //create otp code
-            if ($user->status == 0) {
-                return back()->with('swal-warning', 'حساب شما مسدود شده است !');
-            }
+
             $otpCode = rand(1111, 9999);
             $token = Str::random(60);
             $otpInputs = [
