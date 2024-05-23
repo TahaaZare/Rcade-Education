@@ -12,7 +12,11 @@
                         </div>
                         <p class="description">
 
-                            Education Rcade
+                            <a referrerpolicy='origin' target='_blank'
+                                href='https://trustseal.enamad.ir/?id=493769&Code=8RBNCtG7MdCV5WdBuu1Z43fWdEqN3QBs'><img
+                                    referrerpolicy='origin'
+                                    src='https://trustseal.enamad.ir/logo.aspx?id=493769&Code=8RBNCtG7MdCV5WdBuu1Z43fWdEqN3QBs'
+                                    alt='' style='cursor:pointer' code='8RBNCtG7MdCV5WdBuu1Z43fWdEqN3QBs'></a>
 
                         </p>
                         <div class="widget-information">
