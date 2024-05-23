@@ -290,10 +290,10 @@ class ProfileController extends Controller
                                     $inputs['image'] = $result;
                                 }
 
-                                $inputs['user_id'] = $user->id;
-                                $inputs['create_by'] = $user->id;
                                 $inputs['meta_description'] = "meta_description";
 
+
+                                $inputs['status'] = 0;
 
                                 $blog->update($inputs);
 
