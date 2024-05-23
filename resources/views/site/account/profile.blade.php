@@ -145,6 +145,40 @@
                             </div>
                         </div>
                     </li>
+                    <li>
+                        <div class="accordion" id="accordioninfo">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#accordion2" aria-expanded="false">
+                                        اطلاعات
+                                    </button>
+                                </h2>
+                                <div id="accordion2" class="accordion-collapse collapse" data-bs-parent="#accordioninfo"
+                                    style="">
+                                    <div class="accordion-body">
+                                        <form action="{{ route('update-user-info', $user->username) }}" method="POST">
+                                            @csrf
+
+                                            <div class="form-group basic">
+                                                <div class="input-wrapper">
+                                                    <label class="form-label" for="display_name">نام</label>
+                                                    <input type="text" class="form-control" placeholder="نام نمایشی"
+                                                        name="display_name" id="display_name" placeholder="نام را وارد کنید">
+                                                    <i class="clear-input">
+                                                        <ion-icon name="close-circle" role="img" class="md hydrated"
+                                                            aria-label="close circle"></ion-icon>
+                                                    </i>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <button class="btn btn-block btn-primary" type="submit">ثبت</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <!-- * settings -->

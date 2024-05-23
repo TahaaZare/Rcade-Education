@@ -102,6 +102,45 @@ class ProfileController extends Controller
         }
     }
 
+    public function UpdateUserInfo(Request $request, User $user)
+    {
+        $auth_user = auth()->user();
+        if ($auth_user != null) {
+            if ($user->username != null) {
+                if ($auth_user->username == $user->username) {
+                    if ($user != null) {
+                        if ($user->status == 1) {
+                            if ($user->ban == 0) {
+                                $user->update([
+                                    'display_name' => $request->display_name
+                                ]);
+                                return back()->with('swal-success', 'عملیات با موفقیت انجام شد.');
+                            } else {
+                                Auth::logout();
+                                return redirect()->route('home')
+                                    ->with('swal-warning', 'حساب شما مسدود شده است !');
+                            }
+                        } else {
+                            Auth::logout();
+                            return redirect()->route('home')
+                                ->with('swal-warning', 'حساب شما غیر فعال میباشد !');
+                        }
+                    } else {
+                        return redirect()->route('home');
+                    }
+                } else {
+                    Auth::logout();
+                    abort(404);
+                }
+            } else {
+                return redirect()->route('select-username', $user)
+                    ->with('swal-success', 'ثبت نام شما با موفقیت انجام شد , لطفا نام کاربری خود را وارد کنید');
+            }
+        } else {
+            return redirect()->route('home');
+        }
+    }
+
     public function UpdateBio(Request $request, User $user)
     {
         $auth_user = auth()->user();

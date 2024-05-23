@@ -37,6 +37,7 @@ Route::controller(ProfileController::class)->group(function () {
 
     Route::prefix('my-profile')->group(function () {
         Route::get('/{user:username}', "MyProfile")->name('user.profile');
+        Route::post('/{user:username}/update-user-info', "UpdateUserInfo")->name('update-user-info');
         Route::post('/{user:username}/update-bio', "UpdateBio")->name('update-bio');
 
         Route::get('/{user:username}/create-blog', "CreateBlog")->name('user-create-blog');
