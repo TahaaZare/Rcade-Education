@@ -69,7 +69,7 @@ class HomeController extends Controller
         $faqs = Faq::where('status', 1)->take(4)->get();
         $blogs = Blog::where('status', 1)->orderBy('created_at', 'desc')->take(6)->get();
         $course_categories = CourseCategory::all();
-        $courses = Course::take(9)->get();
+        $courses = Course::where('status',1)->take(9)->get();
         return view('site.home', compact('faqs', 'blogs', 'course_categories', 'courses'));
     }
 

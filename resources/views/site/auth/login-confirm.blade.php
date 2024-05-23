@@ -25,7 +25,7 @@
                                 <hr>
                             </div>
                         @endif
-                        <input class="form-control" type="text" oninput="convertToEnglish(event)"
+                        <input class="form-control" type="number" oninput="convertToEnglish(event)"
                             value="{{ old('otp') }}" name="otp">
                         <i class="clear-input">
                             <ion-icon name="close-circle">

@@ -23,7 +23,7 @@ class UpdateFaqRequest extends FormRequest
     {
         return [
             'question' => ['required', 'max:200'],
-            'answer' => ['required', 'max:100'],
+            'answer' => ['required'],
             'status' => ['required', 'in:0,1'],
         ];
     }

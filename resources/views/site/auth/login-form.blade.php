@@ -14,7 +14,7 @@
                 @csrf
                 <div class="form-group boxed">
                     <div class="input-wrapper">
-                        <input class="form-control" required type="text" oninput="convertToEnglish(event)"
+                        <input class="form-control" required type="number" oninput="convertToEnglish(event)"
                             value="{{ old('id') }}" name="id" placeholder="شماره تماس خود را وارد کنید">
                         <i class="clear-input">
                             <ion-icon name="close-circle">

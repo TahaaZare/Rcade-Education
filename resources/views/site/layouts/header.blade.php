@@ -11,7 +11,7 @@
                             @php
                                 $user = auth()->user();
                             @endphp
-                            <li><a href="{{ route('user.profile', $user->username) }}">profile</a></li>
+                            <li><a href="{{ route('user.profile', $user->username) }}">پروفایل من</a></li>
                         @endauth
                         @guest
                             <li><a href="{{ route('loginForm') }}">ورود / ثبت نام</a></li>
@@ -101,7 +101,7 @@
                 <li class="has-droupdown"><a href="#">ورود به حساب</a>
                     <ul class="submenu">
                         @guest
-                            <li><a href="">ورود</a></li>
+                            <li><a href="{{ route('loginForm') }}">ورود</a></li>
                         @endguest
                         @auth
                             @php
