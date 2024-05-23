@@ -15,9 +15,11 @@
                     enctype="multipart/form-data">
                     @csrf
                     @method('put')
+                    <input type="hidden" name="old_status" value="{{ $old_status }}">
                     <div class="clearfix row">
                         <div class="d-flex justify-content-center my-3">
-                            <img src="{{ asset($blog->image) }}" style="height: 200px;width: 300px;border-radius: 1rem" alt="">
+                            <img src="{{ asset($blog->image) }}" style="height: 200px;width: 300px;border-radius: 1rem"
+                                alt="">
                         </div>
                         <div class="col-12">
                             <div class="form-group basic">
@@ -43,8 +45,12 @@
                                     <label class="form-label" for="status">وضعیت</label>
                                     <select name="status" class="form-control">
                                         <option disabled selected>انتخاب وضعیت</option>
-                                        <option value="0">غیرفعال</option>
-                                        <option value="1">فعال</option>
+                                        <option @if (old('status', $blog->status) == 0) selected @endif value="0">در انتظار
+                                            تایید</option>
+                                        <option @if (old('status', $blog->status) == 1) selected @endif value="1">تایید
+                                        </option>
+                                        <option @if (old('status', $blog->status) == 2) selected @endif value="2">رد کردن
+                                        </option>
                                     </select>
                                     <i class="clear-input">
                                         <ion-icon name="close-circle" role="img" class="md hydrated"
@@ -66,8 +72,9 @@
                                         <option disabled selected>انتخاب دسته</option>
                                         @foreach ($categories as $item)
                                             <option value="{{ $item->id }}"
-                                                @if (old('category_id', $item->id) == $blog->category_id) seleted @endif>
-                                                {{ $item->name }} </option>
+                                                @if (old('category_id', $blog->category_id) == $item->id) selected @endif>
+                                                {{ $item->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     <i class="clear-input">

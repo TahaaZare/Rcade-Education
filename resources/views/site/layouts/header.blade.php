@@ -108,6 +108,7 @@
                                 $user = auth()->user();
                             @endphp
 
+                            <li><a href="{{ route('user.profile',$user->username) }}">پروفایل من</a></li>
                         @endauth
                     </ul>
 

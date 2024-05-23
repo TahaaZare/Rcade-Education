@@ -10,6 +10,7 @@ use App\Models\Account\User;
 use App\Models\Content\Blog\Blog;
 use App\Models\Content\Blog\BlogCategory;
 use Hashids\Hashids;
+use Cryptommer\Smsir\Smsir;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -133,8 +134,11 @@ class BlogController extends Controller
                 if ($user != null) {
                     if ($user->user_type == 2) {
                         $categories = BlogCategory::all();
-
-                        return view('admin.content.blog.edit', compact('user', 'blog', 'categories'));
+                        $old_status = $blog->status;
+                        return view(
+                            'admin.content.blog.edit',
+                            compact('user', 'blog', 'categories',  'old_status')
+                        );
                     } else {
                         Auth::logout();
                         abort(404);
@@ -163,6 +167,18 @@ class BlogController extends Controller
 
                         try {
 
+                            $send_notifications = 0;
+
+                            if ($request->old_status == 0) {
+                                if ($request->status == 1) {
+                                    $send_notifications = 1;
+                                } elseif ($request->status == 2) {
+                                    $send_notifications = 2;
+                                } else {
+                                    $send_notifications = 0;
+                                }
+                            }
+
                             $inputs = $request->all();
 
                             if ($request->hasFile('image')) {
@@ -177,7 +193,6 @@ class BlogController extends Controller
                                 $inputs['image'] = $result;
                             }
 
-
                             $inputs['user_id'] = $user->id;
                             $inputs['create_by'] = $user->id;
                             $inputs['meta_description'] = $request->description;
@@ -185,6 +200,44 @@ class BlogController extends Controller
 
 
                             DB::commit();
+
+
+                            if ($send_notifications == 1) {
+                                $name = "USER";
+                                $value = $user->mobile;
+
+                                $name2 = "BLOG";
+                                $value2 = "$blog->title";
+
+                                $name3 = "SLUG";
+                                $value3 = "$blog->slug";
+
+                                $send = smsir::Send();
+
+                                $parameter = new \Cryptommer\Smsir\Objects\Parameters($name, $value);
+                                $parameter2 = new \Cryptommer\Smsir\Objects\Parameters($name2, $value2);
+                                $parameter3 = new \Cryptommer\Smsir\Objects\Parameters($name3, $value3);
+                                $parameters = array($parameter, $parameter2, $parameter3);
+
+
+                                $send->Verify($user->mobile, 577998, $parameters);
+                            } elseif ($send_notifications == 2) {
+                                $name = "USER";
+                                $value = $user->mobile;
+
+                                $name2 = "BLOG";
+                                $value2 = "$blog->title";
+
+                                $send = smsir::Send();
+
+                                $parameter = new \Cryptommer\Smsir\Objects\Parameters($name, $value);
+                                $parameter2 = new \Cryptommer\Smsir\Objects\Parameters($name2, $value2);
+                                $parameters = array($parameter, $parameter2);
+
+
+                                $send->Verify($user->mobile, 332724, $parameters);
+                            }
+
 
                             return redirect()->route('admin.blog.index', $user->username)
                                 ->with('swal-success', 'عملیات با موفقیت انجام شد .');

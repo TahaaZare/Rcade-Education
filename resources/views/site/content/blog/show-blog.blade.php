@@ -18,7 +18,9 @@
                                 <img src="{{ asset($blog->image) }}" alt="Blog Image">
                             </div>
                         </div>
-                        {!! $blog->description !!}
+                        <div class="container">
+                            {!! $blog->description !!}
+                        </div>
                     </div>
 
                     <div class="blog-author">
@@ -28,6 +30,9 @@
                         </div>
                         <div class="author-content">
                             <h5 class="title">{{ $blog->user($blog->user_id)->username }}</h5>
+                            <div class="container">
+                                {!! $blog->user($blog->user_id)->bio !!}
+                            </div>
                             <ul class="social-share icon-transparent">
                                 <li>
                                     <a href="#"><i class="icon-facebook"></i></a>
