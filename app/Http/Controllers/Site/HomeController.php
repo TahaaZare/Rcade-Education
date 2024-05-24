@@ -7,6 +7,8 @@ use App\Models\Account\User;
 use App\Models\Content\Blog\Blog;
 use App\Models\Content\Course\Course;
 use App\Models\Content\Course\CourseCategory;
+use App\Models\Content\Course\CourseSesson;
+use App\Models\Content\Course\CourseEpisode;
 use App\Models\Content\Site\AboutUs;
 use App\Models\Content\Site\Faq;
 use App\Models\Content\Site\MasterRules;
@@ -134,9 +136,18 @@ class HomeController extends Controller
     public function ShowCourse(Course $course)
     {
         if ($course->status == 1 && $course->slug != null) {
-            return view('site.content.course.show-course', compact('course'));
+            $sessions = CourseSesson::where('course_id', $course->id)->get();
+
+            $episodes = [];
+            foreach ($sessions as $session) {
+                $episodes[$session->id] = CourseEpisode::where('course_id', $course->id)
+                    ->where('sesson_id', $session->id)
+                    ->get();
+            }
+
+            return view('site.content.course.show-course', compact('course', 'episodes', 'sessions'));
         } else {
-            return redirect()->route('courses')->with('swal-warning', 'دوره ایی یافت نشــد !');
+            return redirect()->route('courses')->with('swal-warning', 'دوره‌ای یافت نشد!');
         }
     }
 

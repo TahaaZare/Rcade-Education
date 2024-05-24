@@ -4,21 +4,15 @@ namespace App\Models\Content\Course;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CourseEpisode extends Model
+class CourseSesson extends Model
 {
-    use HasFactory;
-    protected $table = 'course_episodes';
+    use HasFactory, SoftDeletes;
+    protected $table = 'course_sessons';
     protected $fillable = [
         'name',
-        'description',
-        'file_path',
-        'file_size',
-        'file_type',
-        'status',
-        'course_id',
-        'create_by',
-        'sesson_id',
+        'course_id'
     ];
     public function course($id)
     {

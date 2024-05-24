@@ -16,3 +16,6 @@
  <link rel="stylesheet" href="{{ asset('site-assets/assets/css/app.css?v=3') }}">
  <link rel="stylesheet" href="{{ asset('sweetalert/sweetalert2.css') }}">
  <script src="{{ asset('sweetalert/sweetalert2.min.js') }}"></script>
+
+ <script src="{{ asset('fontawesome/js/all.min.js') }}"></script>
+ <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">

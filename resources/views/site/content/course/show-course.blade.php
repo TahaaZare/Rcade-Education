@@ -63,13 +63,60 @@
                                         {!! $course->description !!}
                                     </div>
                                 </div>
+                                <div class="course-curriculam mb--90">
+                                    <div class="accordion edu-accordion sal-animate" id="accordionExample"
+                                        data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
+                                        @foreach ($sessions as $session)
+                                            <div class="accordion-item shadow" style="border-radius: 1rem">
+                                                <h3 class="accordion-header" id="heading{{ $session->id }}">
+                                                    <button class="accordion-button" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapse-{{ $session->id }}" aria-expanded="true"
+                                                        aria-controls="collapse-{{ $session->id }}">
+                                                        {{ $session->name }}
+                                                    </button>
+                                                </h3>
+                                                <div id="collapse-{{ $session->id }}" class="accordion-collapse collapse"
+                                                    aria-labelledby="heading{{ $session->id }}"
+                                                    data-bs-parent="#accordionExample" style="">
+                                                    <div class="accordion-body">
+                                                        <div class="course-lesson">
+                                                            <ul>
+                                                                @foreach ($episodes[$session->id] as $episode)
+                                                                    <li>
+                                                                        <div class="text"><i class="icon-65"></i>
+                                                                            {{ $episode->name }}</div>
+                                                                        <span>
+                                                                            نوع فایل: {{ $episode->file_type }}
+                                                                        </span>
+                                                                        <span>
+                                                                            حجم فایل:
+                                                                            {{ formatBytes($episode->file_size) }}
+                                                                        </span>
+                                                                        <a href="{{ asset($episode->file_path) }}"
+                                                                            download>
+                                                                            <i class="fas fa-download"></i>
+                                                                            دانلود
+                                                                        </a>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="tab-pane">
                                 <div class="course-tab-content" id="instructor-tab-id">
                                     <div class="course-instructor">
                                         <div class="thumbnail">
-                                            <img src="{{ asset($course->master->profile) }}" alt="Author Images">
+                                            <img src="{{ asset($course->master->profile) }}"
+                                                class="rounded rounded-circle shadow w-75"
+                                                alt="{{ $course->master->username }}">
                                         </div>
                                         <div class="author-content">
                                             <h6 class="title">
@@ -79,6 +126,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="tab-pane">
                                 <div class="course-tab-content">
                                     <div class="course-review" id="review-tab-id">

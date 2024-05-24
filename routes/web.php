@@ -7,12 +7,14 @@ use App\Http\Controllers\Admin\Content\Blog\BlogController;
 use App\Http\Controllers\Admin\Content\Course\CourseCategoryController;
 use App\Http\Controllers\Admin\Content\Course\CourseController;
 use App\Http\Controllers\Admin\Content\Course\CourseEpisodeController;
+use App\Http\Controllers\Admin\Content\Course\CourseSessonController;
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\MasterRulseController;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\Site\Account\ProfileController;
 use App\Http\Controllers\Site\HomeController;
 use App\Models\Content\Course\CourseCategory;
+use App\Models\Content\Course\CourseSesson;
 use Illuminate\Support\Facades\Route;
 
 #region site
@@ -140,13 +142,23 @@ Route::controller(AdminController::class)->prefix('admin')->group(function () {
         });
 
 
+        Route::controller(CourseSessonController::class)->prefix('course-sesson')->group(function () {
+            Route::get('{user:username}/list/{course}', 'index')->name('admin.course-sesson.index');
+            Route::get('{user:username}/create/{course}', 'create')->name('admin.course-sesson.create');
+            Route::post('{user:username}/store/{course}', 'store')->name('admin.course-sesson.store');
+            Route::get('{user:username}/edit/{course}/{sesson}', 'edit')->name('admin.course-sesson.edit');
+            Route::put('{user:username}/update/{course}/{sesson}', 'update')->name('admin.course-sesson.update');
+            Route::delete('{user:username}/delete/{course}/{sesson}', 'delete')->name('admin.course-sesson.delete');
+        });
+
+
         Route::controller(CourseEpisodeController::class)->prefix('course-episode')->group(function () {
-            Route::get('{user:username}/', 'index')->name('admin.course-episode.index');
-            Route::get('{user:username}/create/{course}', 'create')->name('admin.course-episode.create');
-            Route::post('{user:username}/store/{course}', 'store')->name('admin.course-episode.store');
-            Route::get('{user:username}/edit/{episode}/{course}', 'edit')->name('admin.course-episode.edit');
-            Route::put('{user:username}/update/{episode}/{course}', 'update')->name('admin.course-episode.update');
-            Route::delete('{user:username}/delete/{episode}/{course}', 'delete')->name('admin.course-episode.delete');
+            Route::get('{user:username}/list/{course}/{sesson}', 'index')->name('admin.course-episode.index');
+            Route::get('{user:username}/create/{course}/{sesson}', 'create')->name('admin.course-episode.create');
+            Route::post('{user:username}/store/{course}/{sesson}', 'store')->name('admin.course-episode.store');
+            Route::get('{user:username}/edit/{course}/{sesson}/{episode}', 'edit')->name('admin.course-episode.edit');
+            Route::put('{user:username}/update/{course}/{sesson}/{episode}', 'update')->name('admin.course-episode.update');
+            Route::delete('{user:username}/delete/{course}/{sesson}/{episode}', 'delete')->name('admin.course-episode.delete');
         });
 
 

@@ -33,9 +33,9 @@
                                 </h2>
 
                                 <div class="dropdown">
-                                    <button class="btn btn-transparent text-white-50 " type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="fas fa-ellipsis-h fa-lg"></i>
+                                    <button class="btn btn-transparent text-white-50 " type="button"
+                                        data-bs-toggle="dropdown" aria-hidden="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-h fa-lg text-success"></i>
                                     </button>
                                     <div class="dropdown-menu " style="">
                                         <a href="{{ route('admin.course.edit', [$user->username, $item]) }}"
@@ -43,9 +43,9 @@
                                             ویرایش
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a href="{{ route('admin.course.edit', [$user->username, $item]) }}"
+                                        <a href="{{ route('admin.course-sesson.index', [$user->username, $item]) }}"
                                             class="btn btn-sm btn-primary p-2 dropdown-item">
-                                            افزودن ویدیو جدید
+                                            افزودن سرفصل جدید
                                         </a>
                                         <div class="dropdown-divider"></div>
                                         <form action="{{ route('admin.course.delete', [$user->username, $item]) }}"

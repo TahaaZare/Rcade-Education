@@ -207,7 +207,6 @@ class CourseController extends Controller
             return redirect()->routel('home');
         }
     }
-
     public function delete(ImageService $imageService, User $user, Course $course)
     {
         $auth_user = auth()->user();
