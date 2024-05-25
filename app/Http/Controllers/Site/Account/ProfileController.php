@@ -20,6 +20,22 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
+    public function FollowUser($following, $follower)
+    {
+        $user_1 = User::where('username', $following)->first();
+        $user_2 = User::where('username', $follower)->first();
+
+        $user_1->follow($user_2);
+        return back()->with('swal-success', 'دنبال کردن با موفقیت انجام شـد');
+    }
+    public function UnFollowUser($following, $follower)
+    {
+        $user_1 = User::where('username', $following)->first();
+        $user_2 = User::where('username', $follower)->first();
+
+        $user_1->unfollow($user_2);
+        return back()->with('swal-success', 'لغو دنبال کردن با موفقیت انجام شـد');
+    }
     public function SelectUsername(User $user)
     {
         $auth_user = auth()->user();

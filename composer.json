@@ -13,6 +13,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "morilog/jalali": "^3.4",
+        "overtrue/laravel-follow": "^5.2",
         "proengsoft/laravel-jsvalidation": "^4.9"
     },
     "require-dev": {

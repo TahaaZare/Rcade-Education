@@ -37,6 +37,9 @@ Route::controller(ProfileController::class)->group(function () {
 
     Route::get('/{user:username}', 'UserProfile')->name('user-profile');
 
+    Route::get('follow/{following}/{follower}','FollowUser')->name('follow-user');
+    Route::get('unfollow/{following}/{follower}','UnFollowUser')->name('unfollow-user');
+
     Route::prefix('my-profile')->group(function () {
         Route::get('/{user:username}', "MyProfile")->name('user.profile');
         Route::post('/{user:username}/update-user-info', "UpdateUserInfo")->name('update-user-info');

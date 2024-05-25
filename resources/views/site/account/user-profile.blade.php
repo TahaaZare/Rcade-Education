@@ -14,23 +14,53 @@
                 <img src="{{ asset($user->profile) }}" alt="avatar" class="imaged shadow w64 rounded">
             </div>
             <div class="in">
-                <h3 class="name">{{ $user->display_name ?? "-" }}</h3>
+                <h3 class="name">{{ $user->display_name ?? '-' }}</h3>
                 <h5 class="subtext" dir="ltr">
                     @php
                         $username = "@$user->username";
                     @endphp
                     {{ $username }}
                 </h5>
+
             </div>
         </div>
     </div>
+    @auth
+        @php
+            $auth_user = auth()->user();
+        @endphp
+        @if ($auth_user->username != $user->username)
+            @if ($auth_user->isFollowing($user))
+                <a href="{{ route('unfollow-user', [$auth_user->username, $user->username]) }}"
+                    class="btn btn-danger rounded m-2">
+                    لغو دنبال کردن
+                </a>
+            @else
+                <a href="{{ route('follow-user', [$auth_user->username, $user->username]) }}"
+                    class="btn btn-primary rounded m-2">
+                    دنبال کردن
+                </a>
+            @endif
+        @endif
+
+    @endauth
+    @guest
+        <a href="{{ route('loginForm') }}" class="btn btn-primary rounded m-2">
+            دنبال کردن
+        </a>
+    @endguest
 
     <div class="section full mt-2">
         <div class="profile-stats ps-2 pe-2">
             <a href="#" class="item">
                 <strong>{{ $user_blogs->count() }}</strong>مقالات
             </a>
-
+            <a href="#" class="item">
+                <strong>{{ $user->followings()->count() }}</strong>دنبال کنندگانـ
+            </a>
+            <a href="#" class="item">
+                <strong>{{ $user->followers()->count() }}</strong>دنبال شوندگانـ
+            </a>
         </div>
     </div>
 
