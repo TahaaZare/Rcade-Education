@@ -90,7 +90,7 @@ class BlogController extends Controller
 
                             $inputs['user_id'] = $user->id;
                             $inputs['create_by'] = $user->id;
-                            $inputs['meta_description'] = $request->description;
+                            $inputs['meta_description'] = "meta_description";
 
 
 
@@ -202,7 +202,6 @@ class BlogController extends Controller
                                 $inputs['image'] = $result;
                             }
 
-                            $inputs['meta_description'] = $request->description;
                             $blog->update($inputs);
 
 
