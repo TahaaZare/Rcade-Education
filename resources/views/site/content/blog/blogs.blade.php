@@ -40,10 +40,11 @@
                 <!-- End Blog Grid  -->
             </div>
 
-
-            <ul class="edu-pagination top-space-30">
-                {!! $blogs->links('pagination::bootstrap-5') !!}
-            </ul>
+            <div class="pagination d-flex justify-content-center">
+                <ul>
+                    {{ $blogs->links('pagination::bootstrap-4') }}
+                </ul>
+            </div>
 
         </div>
     </section>

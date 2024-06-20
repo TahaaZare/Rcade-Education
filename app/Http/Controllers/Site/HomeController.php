@@ -105,7 +105,8 @@ class HomeController extends Controller
 
     public function Blogs()
     {
-        $blogs = Blog::where('status', 1)->where('slug', '!=', null)->paginate(6);
+        $blogs = Blog::where('status', 1)->where('slug', '!=', null)
+            ->orderBy('created_at', 'desc')->paginate(6);
         return view('site.content.blog.blogs', compact('blogs'));
     }
     public function ShowBlog(Blog $blog)
