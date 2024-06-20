@@ -248,7 +248,7 @@ class ProfileController extends Controller
                                 $inputs = $request->all();
                                 if ($request->hasFile('image')) {
                                     $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'blogs');
-                                    $result = $imageService->save($request->file('image'));
+                                    $result = $imageService->save_Webp($request->file('image'));
                                     if ($result === false) {
                                         return back()->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
                                     }

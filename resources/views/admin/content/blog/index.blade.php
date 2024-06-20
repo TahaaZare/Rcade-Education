@@ -23,10 +23,13 @@
         <hr>
         <div class="row">
             @foreach ($blogs as $item)
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col-lg-4 col-md-6 col-sm-12 my-2">
                     <div class="card product-card">
                         <div class="card-body">
-                            <img src="{{ asset($item->image) }}" class="image" alt="{{ $item->title }}">
+                            <div class="d-flex justify-content-center">
+                                <img src="{{ asset($item->image) }}" style="width: 100%;height: 300px" class="image"
+                                    alt="{{ $item->title }}">
+                            </div>
                             <h2 class="title d-flex justify-content-between">{{ $item->title }}
                                 @if ($item->status == 1)
                                     <span class="badge bg-success rounded mx2">فعال</span>
@@ -55,6 +58,13 @@
                     </div>
                 </div>
             @endforeach
+
+            <nav class="my-4">
+                <ul class="pagination pagination-secondary">
+                    {{ $blogs->links('pagination::bootstrap-5') }}
+                </ul>
+            </nav>
+
         </div>
 
     </div>

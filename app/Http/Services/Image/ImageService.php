@@ -4,9 +4,28 @@ namespace App\Http\Services\Image;
 
 use Illuminate\Support\Facades\Config;
 use Intervention\Image\Facades\Image;
+
 class ImageService extends ImageToolsService
 {
+    public function save_Webp($image)
+    {
+        if (!$image instanceof \Illuminate\Http\UploadedFile) {
+            return false; // Or handle the error as appropriate
+        }
 
+        $this->setImage($image);
+        $this->provider();
+
+        // Get the full path of the original image without any extension
+        $imagePathWithoutExtension = $this->getFinalImageDirectory() . DIRECTORY_SEPARATOR . $this->getImageName();
+
+        // Save the image in WebP format
+        $result = Image::make($image->getRealPath())
+            ->encode('webp', 75)
+            ->save($imagePathWithoutExtension . '.webp', 75);
+
+        return $result ? $this->getFinalImageDirectory() . DIRECTORY_SEPARATOR . $this->getImageName() . '.webp' : false;
+    }
     public function save($image)
     {
         //set image

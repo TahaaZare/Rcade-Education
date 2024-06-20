@@ -79,7 +79,7 @@ class CourseController extends Controller
                             $inputs = $request->all();
                             if ($request->hasFile('image')) {
                                 $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'courses');
-                                $result = $imageService->save($request->file('image'));
+                                $result = $imageService->save_Webp($request->file('image'));
                                 if ($result === false) {
                                     return back()->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
                                 }
@@ -169,7 +169,7 @@ class CourseController extends Controller
                                     $imageService->deleteImage($course->image);
                                 }
                                 $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'courses');
-                                $result = $imageService->save($request->file('image'));
+                                $result = $imageService->save_Webp($request->file('image'));
                                 if ($result === false) {
                                     return back()->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
                                 }
