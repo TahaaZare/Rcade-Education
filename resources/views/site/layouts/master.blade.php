@@ -3,6 +3,7 @@
 
 <head>
     @include('site.layouts.meta')
+    @yield('meta-tags')
     @include('site.layouts.head-tag')
     @yield('head-tag')
 </head>

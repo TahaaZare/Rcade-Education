@@ -39,6 +39,8 @@
                                     <span class="badge bg-danger rounded mx2">رد شده !</span>
                                 @endif
                             </h2>
+                            <span class="category">
+                                تعداد بازدید : {{ $item->visitLogs()->distinct('ip')->count('ip') }}</span>
                             <p class="text">
                                 توسط : {{ $item->user($item->create_by)->username }}
                             </p>

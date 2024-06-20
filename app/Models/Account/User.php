@@ -8,12 +8,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Overtrue\LaravelFollow\Traits\Followable;
 use Overtrue\LaravelFollow\Traits\Follower;
+use Shetabit\Visitor\Traits\Visitor;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
     use Follower;
     use Followable;
+    use Visitor;
 
     /**
      * The attributes that are mass assignable.

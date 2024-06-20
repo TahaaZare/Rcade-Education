@@ -5,10 +5,12 @@ namespace App\Models\Content\Blog;
 use App\Models\Account\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Shetabit\Visitor\Traits\Visitable;
 
 class Blog extends Model
 {
     use HasFactory;
+    use Visitable;
     protected $table = 'blogs';
     protected $fillable = [
         'title',

@@ -117,6 +117,16 @@ class HomeController extends Controller
                 ->inRandomOrder()
                 ->take(2)
                 ->get();
+
+            $user = auth()->user();
+            if ($user == null) {
+                // visitor()->visit($blog);
+                request()->visitor()->visit($blog);
+            } else {
+                request()->visitor()->visit($blog);
+                // visitor()->setVisitor($blog)->visit($blog);
+            }
+
             return view('site.content.blog.show-blog', compact('blog', 'other_blogs'));
         } else {
             return redirect()->route('blogs')->with('swal-warning', 'مقاله ایی یافت نشــد !');

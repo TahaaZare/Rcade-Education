@@ -1,5 +1,17 @@
 @extends('site.layouts.master')
 @section('title', "$blog->title")
+@section('meta-tags')
+    <meta property=og:site_name value="Rcade Education">
+    <meta property=og:title content="{{ $blog->name }}">
+    <meta property=og:url content="{{ route('show-blog', $blog->slug) }}" />
+    <meta property=og:image content="{{ asset($blog->image) }}">
+    <meta property=og:image:url content="{{ asset($blog->image) }}" />
+    <meta property=og:image:width content="700">
+    <meta property=og:image:type content="image/jpg">
+    <meta property=og:description content="">
+    <meta property=og:price:currency content="IRR">
+    <meta property=og:locale content="ir_FA">
+@endsection
 @section('content')
     <div class="blog-details-area section-gap-equal">
         <div class="container">
@@ -8,6 +20,7 @@
                     <div class="blog-details-content">
                         <div class="entry-content">
                             <span class="category">{{ $blog->category->name }}</span>
+                         
                             <h3 class="title">{{ $blog->title }}</h3>
                             <ul class="blog-meta">
                                 <li class="d-flex"><i class="icon-27"></i>
